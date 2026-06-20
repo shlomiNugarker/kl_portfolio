@@ -28,6 +28,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     // client render, causing a hydration mismatch. Render the plain trigger on
     // the server and mount the interactive tooltip only after hydration.
     const [mounted, setMounted] = useState(false)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     useEffect(() => setMounted(true), [])
 
     if (disabled || !mounted) return children

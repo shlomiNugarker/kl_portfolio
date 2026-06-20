@@ -69,8 +69,10 @@ const useScrollDirection = (
       window?.addEventListener('scroll', onScroll)
     }
 
-    // Fallback for initial load
+    // Fallback for initial load — a one-shot guarded by isInitialized, so it
+    // does not cause the cascading re-renders the rule warns about.
     if (!isMobile && !isInitialized && lastScrollY > avatarScrollY) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setScrollDir(ScrollDirection.Down)
       setIsInitialized(true)
     }

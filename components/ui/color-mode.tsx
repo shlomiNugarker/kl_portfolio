@@ -18,7 +18,10 @@ export function ColorModeProvider(props: ThemeProviderProps) {
 export function useColorMode() {
   const { resolvedTheme, setTheme } = useTheme()
   // Avoid hydration mismatch: next-themes resolves the theme only on the client.
+  // Flipping a mounted flag on first render is the canonical hydration-safe
+  // pattern; the rule's concern (cascading renders) doesn't apply to a one-shot.
   const [mounted, setMounted] = useState(false)
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), [])
 
   const colorMode = (mounted ? resolvedTheme : 'dark') as ColorMode

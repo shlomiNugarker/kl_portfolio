@@ -9,6 +9,6 @@ export type LinkButtonProps = ButtonProps &
   AnchorHTMLAttributes<HTMLAnchorElement>
 
 export const LinkButton = (props: LinkButtonProps) => (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   <Button as="a" {...(props as any)} />
 )

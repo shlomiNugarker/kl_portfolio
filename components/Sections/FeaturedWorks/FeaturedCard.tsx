@@ -1,4 +1,4 @@
-/* eslint-disable react/no-multi-comp */
+ 
 import {
   Box,
   Image,
@@ -16,7 +16,7 @@ import { easing, DURATIONS } from 'config/animations'
 
 export type FeaturedCardProps = {
   // Responsive height value (string or Chakra responsive object).
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   height: string | Record<string, any>
   src: string
   idx: number
@@ -141,7 +141,8 @@ const FeaturedCard = ({
 }: FeaturedCardProps) => {
   const isLeftImage = isMobile ? false : idx % 2 === 0
   const bg = useColorModeValue('blackAlpha.50', 'whiteAlpha.200')
-  const CoverImage = () => (
+  // A JSX element (not a nested component) so it isn't re-created each render.
+  const coverImage = (
     <MotionImage
       height={height}
       width="100%"
@@ -171,7 +172,7 @@ const FeaturedCard = ({
         display={{ base: 'flex', md: 'grid' }}
         flexDirection={{ base: 'column-reverse', md: 'initial' }}
       >
-        {isLeftImage && <CoverImage />}
+        {isLeftImage && coverImage}
         <ProjectDescription
           idx={idx}
           title={title}
@@ -179,7 +180,7 @@ const FeaturedCard = ({
           ctaUrl={ctaUrl}
           isLeft={isLeftImage}
         />
-        {!isLeftImage && <CoverImage />}
+        {!isLeftImage && coverImage}
       </SimpleGrid>
     </Box>
   )

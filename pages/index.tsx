@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import type { JSX } from 'react'
 import {
   Grid,
@@ -154,12 +154,25 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://dev.to/api/articles?username=klawingco')
-  const articles = await res.json()
+  let articles: Article[] = []
+  try {
+    const res = await fetch('https://dev.to/api/articles?username=klawingco')
+    if (res.ok) {
+      const data = await res.json()
+      if (Array.isArray(data)) {
+        articles = data
+      }
+    }
+  } catch {
+    // dev.to is unavailable at build time — fall back to an empty list rather
+    // than failing the whole build.
+  }
   return {
     props: {
       articles,
     },
+    // Re-fetch the article list at most once per hour (ISR).
+    revalidate: 3600,
   }
 }
 

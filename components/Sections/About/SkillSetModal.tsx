@@ -1,4 +1,4 @@
-/* eslint-disable react/no-multi-comp */
+ 
 import {
   Heading,
   Dialog,

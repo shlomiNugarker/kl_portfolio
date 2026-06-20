@@ -15,8 +15,9 @@ declare global {
   }
 }
 
+const MotionBox = motion.create(Box)
+
 const Avatar = () => {
-  const MotionBox = motion.create(Box)
   const imgAvatar = useColorModeValue(
     AvatarImages.LightMode,
     AvatarImages.DarkMode

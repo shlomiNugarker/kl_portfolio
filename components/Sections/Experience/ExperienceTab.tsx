@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import {
   Text,
   Link,
@@ -54,7 +54,7 @@ const ExperienceTab = () => {
       <Tabs.List
         flexShrink={0}
         flexDirection={tabOrientation === 'vertical' ? 'column' : 'row'}
-        width={tabOrientation === 'vertical' ? '30%' : 'auto'}
+        width="auto"
         borderColor="transparent"
         overflowX={tabOrientation === 'vertical' ? 'visible' : 'auto'}
         overflowY="hidden"
@@ -66,7 +66,10 @@ const ExperienceTab = () => {
             key={`Tab-${company.name}`}
             fontSize="smaller"
             h="120px"
+            width="auto"
             minWidth={tabMinWidth}
+            justifyContent="center"
+            paddingX={6}
             boxShadow="none"
             borderRadius={0}
             borderColor={borderColor}

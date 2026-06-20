@@ -1,8 +1,8 @@
-/* eslint-disable react/no-multi-comp */
+ 
 import * as React from 'react'
 import { motion } from 'framer-motion'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 const Path = ({ isDarkMode, ...props }: any) => (
   // isDarkMode is destructured out so it is not spread onto the DOM <path>
   // element (React warns about unknown DOM attributes otherwise).

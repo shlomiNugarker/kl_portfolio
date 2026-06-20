@@ -7,10 +7,11 @@ import styles from './styles.module.css'
 import { ThemeMode, mobileBreakpointsMap } from 'config/theme'
 import { simpleOpacity } from 'config/animations'
 
+const MotionImage = motion.create(Image)
+
 const Logo = () => {
   const { colorMode } = useColorMode()
   const [isLogoLoaded, setLogoLoaded] = useState(false)
-  const MotionImage = motion.create(Image)
   const isMobile = useBreakpointValue(mobileBreakpointsMap)
   return (
     <AnimatePresence>
