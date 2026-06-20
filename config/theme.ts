@@ -33,7 +33,11 @@ const colors = {
   black: '#121212',
 }
 
-const styles = {
+// Function-form `global` is valid at runtime; Chakra 1's Styles type rejects it
+// under stricter TS. Cast is a temporary bridge — this theme is rewritten to
+// Chakra 3's createSystem in a later stage.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const styles: any = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   global: (props: any) => ({
     body: {

@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { Link } from '@chakra-ui/react'
 
 export type Company = 'Deloitte' | 'SCG' | 'Blotocol'

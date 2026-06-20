@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { useColorMode } from '@chakra-ui/react'
 import Head from 'next/head'
 
