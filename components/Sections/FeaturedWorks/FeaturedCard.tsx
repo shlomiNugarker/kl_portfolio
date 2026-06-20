@@ -1,13 +1,6 @@
  
-import {
-  Box,
-  Image,
-  Separator,
-  Text,
-  SimpleGrid,
-  Container,
-  Stack,
-} from '@chakra-ui/react'
+import { Box, Separator, Text, SimpleGrid, Container, Stack } from '@chakra-ui/react'
+import NextImage from 'next/image'
 import { LinkButton } from 'components/ui/link-button'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { motion, TargetAndTransition } from 'framer-motion'
@@ -49,7 +42,7 @@ const variants: Record<'normal' | 'hover' | 'tap', TargetAndTransition> = {
   },
 }
 
-const MotionImage = motion.create(Image)
+const MotionBox = motion.create(Box)
 
 const ProjectDescription = ({
   idx,
@@ -142,19 +135,27 @@ const FeaturedCard = ({
   const isLeftImage = isMobile ? false : idx % 2 === 0
   const bg = useColorModeValue('blackAlpha.50', 'whiteAlpha.200')
   // A JSX element (not a nested component) so it isn't re-created each render.
+  // next/image with `fill` needs a positioned parent that owns the responsive
+  // height; the hover/tap scale lives on that parent box.
   const coverImage = (
-    <MotionImage
+    <MotionBox
+      position="relative"
       height={height}
       width="100%"
-      src={src}
-      alt={title}
-      objectFit="cover"
-      objectPosition={objectPosition}
-      loading="lazy"
+      overflow="hidden"
       opacity={0.75}
       whileHover={variants.hover}
       whileTap={variants.tap}
-    />
+    >
+      <NextImage
+        src={src}
+        alt={title}
+        fill
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        style={{ objectFit: 'cover', objectPosition }}
+      />
+    </MotionBox>
   )
 
   return (

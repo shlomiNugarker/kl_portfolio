@@ -1,4 +1,5 @@
-import { Box, Image as ChkImage, Text, Link } from '@chakra-ui/react'
+import { Box, Text, Link } from '@chakra-ui/react'
+import NextImage from 'next/image'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { motion, AnimatePresence } from 'framer-motion'
 import { avatarAnimation } from 'config/animations'
@@ -27,12 +28,13 @@ const Avatar = () => {
         variants={avatarAnimation}
         exit={{ opacity: 0 }}
       >
-        <ChkImage
+        <NextImage
           src={imgAvatar}
           alt="KL Lawingco Avatar"
-          htmlWidth="250"
-          htmlHeight="250"
-          margin="auto"
+          width={250}
+          height={250}
+          priority
+          style={{ width: '100%', height: 'auto', margin: 'auto' }}
         />
         <Text textAlign="center" fontSize="smaller" color="kl.description">
           Art by{' '}
