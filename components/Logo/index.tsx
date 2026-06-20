@@ -10,7 +10,7 @@ import { simpleOpacity } from 'config/animations'
 const Logo = () => {
   const { colorMode } = useColorMode()
   const [isLogoLoaded, setLogoLoaded] = useState(false)
-  const MotionImage = motion(Image)
+  const MotionImage = motion.create(Image)
   const isMobile = useBreakpointValue(mobileBreakpointsMap)
   return (
     <AnimatePresence>

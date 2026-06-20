@@ -11,8 +11,8 @@ import { motion } from 'framer-motion'
 import FeaturedCard from './FeaturedCard'
 import { fadeInUpSlower, galleryStagger } from 'config/animations'
 import { mobileBreakpointsMap } from 'config/theme'
-const MotionGrid = motion(Grid)
-const MotionGridItem = motion(GridItem)
+const MotionGrid = motion.create(Grid)
+const MotionGridItem = motion.create(GridItem)
 
 const FeaturedWorksSection = () => {
   const isMobile = useBreakpointValue(mobileBreakpointsMap)

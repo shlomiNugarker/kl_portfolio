@@ -24,14 +24,14 @@ const Sidebar = () => {
   const { colorMode } = useColorMode()
   const display = useBreakpointValue({ base: 'none', lg: 'block' })
   const surNameSize = useBreakpointValue({ base: '6xl', md: '7xl' } as const)
-  const MotionHeading = motion(Heading)
-  const MotionText = motion(Text)
-  const MotionStack = motion(Stack)
+  const MotionHeading = motion.create(Heading)
+  const MotionText = motion.create(Text)
+  const MotionStack = motion.create(Stack)
   // `as="a"` renders an anchor at runtime; Chakra 2 types don't infer the
   // polymorphic anchor props (href/target) through motion(), so this is cast.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const MotionButton: any = motion(Button)
-  const MotionBox = motion(Box)
+  const MotionButton: any = motion.create(Button)
+  const MotionBox = motion.create(Box)
 
   return (
     <MotionBox

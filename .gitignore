@@ -36,5 +36,8 @@ yarn-error.log*
 # npm lockfile — this project uses yarn
 package-lock.json
 
+# TypeScript incremental build info
+tsconfig.tsbuildinfo
+
 # internal upgrade working doc (not for upstream PR)
 UPGRADE_PLAN.md
