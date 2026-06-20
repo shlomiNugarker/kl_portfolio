@@ -1,4 +1,5 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
+import { poppins } from 'config/fonts'
 
 // Color-mode constants and the mobile breakpoint map, consumed across the app.
 export const ThemeMode = {
@@ -21,8 +22,10 @@ const config = defineConfig({
   theme: {
     tokens: {
       fonts: {
-        heading: { value: 'Poppins' },
-        body: { value: 'Poppins' },
+        // Self-hosted Poppins (see config/fonts.ts). next/font already appends
+        // system fallbacks to `style.fontFamily`.
+        heading: { value: poppins.style.fontFamily },
+        body: { value: poppins.style.fontFamily },
       },
       colors: {
         // Custom near-black used as the dark background (was `colors.black`).
