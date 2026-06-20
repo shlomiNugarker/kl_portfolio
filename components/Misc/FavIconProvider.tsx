@@ -1,8 +1,8 @@
-import type { JSX } from 'react'
+import type { ReactNode } from 'react'
 import { useColorMode } from 'components/ui/color-mode'
 import Head from 'next/head'
 
-const FavIconProvider = ({ children }: { children: JSX.Element }) => {
+const FavIconProvider = ({ children }: { children: ReactNode }) => {
   const { colorMode } = useColorMode()
   return (
     <>

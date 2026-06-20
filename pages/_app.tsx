@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion'
 import system from 'config/theme'
 import { ColorModeProvider } from 'components/ui/color-mode'
 import FavIconProvider from 'components/Misc/FavIconProvider'
+import Analytics from 'components/Misc/Analytics'
 
 function KLSite({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -14,6 +15,7 @@ function KLSite({ Component, pageProps }: AppProps): JSX.Element {
         <ColorModeProvider defaultTheme="dark" enableSystem={false}>
           <FavIconProvider>
             <Component {...pageProps} />
+            <Analytics />
           </FavIconProvider>
         </ColorModeProvider>
       </ChakraProvider>

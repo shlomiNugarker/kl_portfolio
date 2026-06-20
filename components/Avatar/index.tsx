@@ -1,18 +1,11 @@
 import { Box, Image as ChkImage, Text, Link } from '@chakra-ui/react'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect } from 'react'
 import { avatarAnimation } from 'config/animations'
 
 const AvatarImages = {
   DarkMode: '/KL_avatar.png',
-  LightMode: './KL_avatar_light.png',
-}
-
-declare global {
-  interface Window {
-    preloadedPictures?: HTMLImageElement[]
-  }
+  LightMode: '/KL_avatar_light.png',
 }
 
 const MotionBox = motion.create(Box)
@@ -22,16 +15,6 @@ const Avatar = () => {
     AvatarImages.LightMode,
     AvatarImages.DarkMode
   )
-  useEffect(() => {
-    // Some nice preloading and caching
-    const images = [AvatarImages.DarkMode, AvatarImages.LightMode]
-    const preloadedImages = images.map((imageSrc) => {
-      const img = new Image()
-      img.src = imageSrc
-      return img
-    })
-    window.preloadedPictures = preloadedImages
-  }, [])
   return (
     <AnimatePresence>
       <MotionBox
