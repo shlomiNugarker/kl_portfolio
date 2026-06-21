@@ -1,52 +1,52 @@
 {
   "sidebar": {
-    "greeting": "Hey there! I am",
+    "greeting": "Hi, I'm",
     "name": "Shlomi Nugarker",
     "headline_line1": "Full-Stack",
     "headline_line2": "Developer.",
-    "location": "Based in Tel Aviv, Israel . . .",
-    "intro": "Thanks for stopping by!",
-    "welcome": "Welcome.",
-    "description": "I build websites and small-to-mid web applications end-to-end — from the database and API to the interface users actually touch.",
-    "cta": "Get in touch!"
+    "location": "From Tel Aviv · open to a role or a project",
+    "intro": "Glad you're here.",
+    "welcome": "Nice to meet you.",
+    "description": "I turn ideas into products that work — fast, clean, easy-to-maintain websites and apps. If you have something that needs a developer who takes ownership from idea to launch, I'm here for it.",
+    "cta": "Let's talk"
   },
   "about": {
-    "heading": "About me.",
-    "lead_1": "I'm a full-stack developer based in Israel, working as a freelancer. I build websites and small-to-mid web applications",
+    "heading": "A bit about me.",
+    "lead_1": "I'm a full-stack developer from Israel, building websites and apps",
     "end_to_end": "end-to-end",
-    "end_to_end_tip": "Database, API and UI — the whole thing.",
-    "lead_2": "— from the database and API to the interface users actually touch.",
-    "body": "I try to keep the code simple enough that the next person to open it can pick it up quickly. Here are a few technologies I reach for, fueled by",
+    "end_to_end_tip": "Server, client, and everything in between.",
+    "lead_2": "— from the server and database to the screen the user sees.",
+    "body": "What matters to me is bringing real value: clean code that's easy to maintain and extend, fast performance, and attention to the small details that make the difference. I like taking ownership of a task and seeing it through. Here are a few tools I work with, fueled by",
     "coffee": "coffee",
     "coffee_tip": "Lots of it.",
-    "see_skills": "See my full arsenal"
+    "see_skills": "See the full list"
   },
   "services": {
-    "heading": "What i do.",
-    "description": "I work as a freelancer with companies and individuals, building and shipping web products. Here is how I can help.",
+    "heading": "How I can help.",
+    "description": "From the first idea to a live, stable product — I cover the whole development pipeline. Here are the areas where I can bring value.",
     "items": {
       "web_apps": {
         "title": "Web Applications",
-        "description": "Small-to-mid web apps built end-to-end — from data model and API to the interface users actually touch."
+        "description": "I build the whole app, start to finish — the logic, the data, and the screens the user interacts with."
       },
       "frontend": {
-        "title": "Frontend Development",
-        "description": "Responsive, accessible interfaces with React, Next.js and TypeScript that stay fast and easy to maintain."
+        "title": "Frontend",
+        "description": "Clean, fast interfaces with React and Next.js that are easy to use and look great on any screen."
       },
       "backend": {
         "title": "Backend & APIs",
-        "description": "REST APIs and server-side logic with Node.js and Express, wired to the right database for the job."
+        "description": "Stable servers and APIs with Node.js, connected to the right database for the job."
       },
       "databases": {
-        "title": "Databases & Integration",
-        "description": "Data modeling and integrations across PostgreSQL, MongoDB, Supabase and Firebase."
+        "title": "Data & Integrations",
+        "description": "Connecting databases and third-party services — PostgreSQL, MongoDB, Supabase, Firebase and more."
       }
     }
   },
   "works": {
-    "heading": "Some of my works.",
-    "description": "Check out some of the works I made at freelancing, company projects and even case studies.",
-    "view_project": "View Project",
+    "heading": "A few things I've built.",
+    "description": "Some projects I've worked on recently. Each one built from scratch.",
+    "view_project": "View",
     "items": {
       "makeble": {
         "title": "Makeble",
@@ -70,10 +70,10 @@
     "tools": "Tools & Platforms"
   },
   "contact": {
-    "heading": "Say hi!",
-    "body": "Have a project in mind, or just want to talk shop? I'm always happy to hear about new ideas and collaborations. Feel free to reach out on",
+    "heading": "Let's talk.",
+    "body": "Looking for a developer for a project or a role, or just want to chat? I'd love to hear from you and see how I can help. Reach out on",
     "linkedin": "LinkedIn",
-    "or_email": "or shoot me an",
+    "or_email": "or drop me an",
     "email": "email"
   },
   "nav": {
