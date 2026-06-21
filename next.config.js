@@ -6,6 +6,10 @@ module.exports = {
   // Serve next/image output as modern formats when supported.
   images: {
     formats: ['image/avif', 'image/webp'],
+    // The logo + works placeholders are local, trusted SVGs.
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Tree-shake the barrel imports of these heavy packages so only the used
   // modules ship, cutting the initial JS bundle and main-thread bootup time.

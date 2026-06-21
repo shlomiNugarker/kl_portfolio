@@ -1,5 +1,5 @@
 import { IconType } from 'react-icons'
-import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa'
 
 type SocialMedia = {
   label: string
@@ -17,5 +17,10 @@ export const SocialMedias: SocialMedia[] = [
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/shlomi-nugarker-b89777155/',
     icon: FaLinkedin,
+  },
+  {
+    label: 'Email',
+    href: 'mailto:shlomin.dev@gmail.com',
+    icon: FaEnvelope,
   },
 ]

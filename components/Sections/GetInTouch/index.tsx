@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { Heading, Text, Stack, Link, Icon, Box } from '@chakra-ui/react'
 import { motion, Variants } from 'framer-motion'
 import { useInView } from 'hooks/useInView'
-import { RiHeartPulseFill, RiCopyleftLine, RiGithubFill } from 'react-icons/ri'
+import { RiCopyrightLine, RiGithubFill } from 'react-icons/ri'
 const rimuruVariant: Variants = {
   shake: {
     rotate: [0, 15, 0, -15, 0],
@@ -88,8 +88,7 @@ const GetInTouch = () => {
         >
           <Text as="span">
             <Icon as={RiGithubFill} h={6} w={6} /> <br />
-            Designed and Made with <Icon as={RiHeartPulseFill} /> <br />
-            Shlomi Nugarker <Icon as={RiCopyleftLine} /> 2026
+            Shlomi Nugarker <Icon as={RiCopyrightLine} /> 2026
           </Text>
         </Link>
       </Box>

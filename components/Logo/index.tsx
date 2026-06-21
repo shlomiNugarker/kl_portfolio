@@ -1,51 +1,24 @@
-import { memo, useState } from 'react'
-import { Image, useBreakpointValue } from '@chakra-ui/react'
-import { useColorMode } from 'components/ui/color-mode'
+import { memo } from 'react'
+import { Box } from '@chakra-ui/react'
+import NextImage from 'next/image'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import styles from './styles.module.css'
-import { ThemeMode, mobileBreakpointsMap } from 'config/theme'
-import { simpleOpacity } from 'config/animations'
 
-const MotionImage = motion.create(Image)
-
-const Logo = () => {
-  const { colorMode } = useColorMode()
-  const [isLogoLoaded, setLogoLoaded] = useState(false)
-  const isMobile = useBreakpointValue(mobileBreakpointsMap)
-  return (
-    <AnimatePresence>
-      <Link href="/" passHref>
-        {colorMode === ThemeMode.Dark ? (
-          <MotionImage
-            className={!isMobile ? styles.logo : ''}
-            boxSize={isMobile ? '30px' : '50px'}
-            objectFit="cover"
-            src="/logo.png"
-            alt="Shlomi Nugarker logo"
-            variants={simpleOpacity}
-            initial="initial"
-            animate={isLogoLoaded && 'animate'}
-            onLoad={() => setLogoLoaded(true)}
-            zIndex={2}
-          />
-        ) : (
-          <MotionImage
-            className={!isMobile ? styles.logo : ''}
-            boxSize={isMobile ? '30px' : '50px'}
-            objectFit="cover"
-            src="/logo_light.png"
-            alt="Shlomi Nugarker logo"
-            variants={simpleOpacity}
-            initial="initial"
-            animate={isLogoLoaded && 'animate'}
-            onLoad={() => setLogoLoaded(true)}
-            zIndex={2}
-          />
-        )}
-      </Link>
-    </AnimatePresence>
-  )
-}
+// A single SVG monogram works in both color modes, so no theme switch or
+// load-state is needed.
+const Logo = () => (
+  <Link href="/" passHref aria-label="Home">
+    <Box className={styles.logo} boxSize={{ base: '30px', lg: '50px' }}>
+      <NextImage
+        src="/logo.svg"
+        alt="Shlomi Nugarker logo"
+        width={50}
+        height={50}
+        priority
+        style={{ width: '100%', height: '100%' }}
+      />
+    </Box>
+  </Link>
+)
 
 export default memo(Logo)

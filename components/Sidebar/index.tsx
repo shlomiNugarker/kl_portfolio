@@ -33,7 +33,7 @@ const MotionBox = motion.create(Box)
 const Sidebar = () => {
   const { colorMode } = useColorMode()
   const display = useBreakpointValue({ base: 'none', lg: 'block' })
-  const surNameSize = useBreakpointValue({ base: '6xl', md: '7xl' } as const)
+  const titleSize = useBreakpointValue({ base: '4xl', md: '5xl' } as const)
 
   return (
     <MotionBox
@@ -69,17 +69,16 @@ const Sidebar = () => {
           </MotionText>
           <MotionHeading
             as="h1"
-            size="5xl"
-            lineHeight={1}
+            size="xl"
             paddingRight={{ lg: '20' }}
             textTransform="uppercase"
             variants={fadeInUp}
           >
-            Shlomi
+            Shlomi Nugarker
           </MotionHeading>
           <MotionHeading
             as="h2"
-            size={surNameSize}
+            size={titleSize}
             lineHeight={1}
             color="kl.emphasis"
             className={styles.marginTopForce}
@@ -88,7 +87,9 @@ const Sidebar = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Nugarker.
+            Full-Stack
+            <br />
+            Developer.
           </MotionHeading>
           <MotionText
             colorScheme="gray"
@@ -98,16 +99,6 @@ const Sidebar = () => {
           >
             Based in Tel Aviv, Israel . . .
           </MotionText>
-
-          <MotionHeading
-            as="h3"
-            size="md"
-            color="kl.emphasis"
-            className={styles.marginTopSmall}
-            variants={fadeInUp}
-          >
-            Full-Stack Developer
-          </MotionHeading>
 
           <MotionText
             color="kl.description"
@@ -143,20 +134,23 @@ const Sidebar = () => {
           </MotionButton>
 
           <MotionBox display="flex" variants={simpleOpacity}>
-            {SocialMedias.map((socMedia) => (
-              <Link
-                color="kl.description"
-                key={socMedia.label}
-                aria-label={socMedia.label}
-                rel="noreferrer"
-                width={8}
-                href={socMedia.href}
-                target="_blank"
-                _focus={{ boxShadow: 'none' }}
-              >
-                <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
-              </Link>
-            ))}
+            {SocialMedias.map((socMedia) => {
+              const isExternal = socMedia.href.startsWith('http')
+              return (
+                <Link
+                  color="kl.description"
+                  key={socMedia.label}
+                  aria-label={socMedia.label}
+                  rel={isExternal ? 'noreferrer' : undefined}
+                  width={8}
+                  href={socMedia.href}
+                  target={isExternal ? '_blank' : undefined}
+                  _focus={{ boxShadow: 'none' }}
+                >
+                  <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
+                </Link>
+              )
+            })}
           </MotionBox>
         </MotionStack>
       </Container>

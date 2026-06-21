@@ -18,7 +18,7 @@ const OpenGraphHead = () => (
       content="Full-stack developer based in Israel. I build websites and web applications end-to-end — from the database and API to the interface."
     />
     <meta property="og:type" content="profile" />
-    <meta property="og:image" content={`${SITE_URL}/KL_avatar.png`} />
+    <meta property="og:image" content={`${SITE_URL}/avatar.jpg`} />
     <meta name="twitter:card" content="summary" />
   </Head>
 )
