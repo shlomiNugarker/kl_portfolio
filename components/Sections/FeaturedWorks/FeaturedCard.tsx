@@ -24,6 +24,10 @@ export type FeaturedCardProps = {
   ctaUrl: string
   ctaLabel: string
   tags?: string[]
+  // Localized badge text ("Client work" / "Personal project").
+  badgeLabel: string
+  // Paid client work gets a prominent accent badge; personal projects a muted one.
+  isClient: boolean
   // Kept for API compatibility with the section; layout is now uniform.
   isMobile?: boolean
 }
@@ -59,14 +63,41 @@ const Tag = ({ label }: { label: string }) => (
   </Box>
 )
 
+const Badge = ({ label, isClient }: { label: string; isClient: boolean }) => (
+  <Box
+    as="span"
+    position="absolute"
+    top={3}
+    insetStart={3}
+    zIndex={2}
+    fontSize="xs"
+    fontWeight="bold"
+    letterSpacing="0.04em"
+    textTransform="uppercase"
+    paddingX={2.5}
+    paddingY={1}
+    borderRadius="full"
+    backdropFilter="blur(6px)"
+    color={isClient ? 'white' : 'whiteAlpha.900'}
+    bg={isClient ? 'teal.500' : 'blackAlpha.600'}
+    boxShadow="sm"
+  >
+    {label}
+  </Box>
+)
+
 const Cover = ({
   images,
   title,
   objectPosition,
+  badgeLabel,
+  isClient,
 }: {
   images: string[]
   title: string
   objectPosition?: string
+  badgeLabel: string
+  isClient: boolean
 }) => {
   const [active, setActive] = useState(0)
   const hasGallery = images.length > 1
@@ -81,6 +112,7 @@ const Cover = ({
       overflow="hidden"
       bg={{ base: 'blackAlpha.100', _dark: 'whiteAlpha.50' }}
     >
+      <Badge label={badgeLabel} isClient={isClient} />
       <MotionImageBox
         position="absolute"
         inset={0}
@@ -148,6 +180,8 @@ const FeaturedCard = ({
   ctaUrl,
   ctaLabel,
   tags,
+  badgeLabel,
+  isClient,
 }: FeaturedCardProps) => {
   const bg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100')
   const borderCol = useColorModeValue('blackAlpha.100', 'whiteAlpha.200')
@@ -170,7 +204,13 @@ const FeaturedCard = ({
       }}
     >
       {/* Wide, full-bleed cover (single image or a small gallery). */}
-      <Cover images={images} title={title} objectPosition={objectPosition} />
+      <Cover
+        images={images}
+        title={title}
+        objectPosition={objectPosition}
+        badgeLabel={badgeLabel}
+        isClient={isClient}
+      />
 
       {/* Content */}
       <Stack

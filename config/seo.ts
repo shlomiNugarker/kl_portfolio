@@ -70,3 +70,11 @@ export const localeUrl = (locale: Locale, path = ''): string => {
   const prefix = locale === DEFAULT_LOCALE ? '' : `/${locale}`
   return `${SITE_URL}${prefix}${path}`
 }
+
+// wa.me link built from PERSON.telephone (digits only, no leading +). An
+// optional prefilled message can be passed and is URL-encoded.
+export const whatsappUrl = (message?: string): string => {
+  const digits = PERSON.telephone.replace(/[^\d]/g, '')
+  const query = message ? `?text=${encodeURIComponent(message)}` : ''
+  return `https://wa.me/${digits}${query}`
+}

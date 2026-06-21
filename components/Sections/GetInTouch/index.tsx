@@ -1,9 +1,13 @@
 import { memo } from 'react'
-import { Heading, Text, Stack, Link, Icon, Box } from '@chakra-ui/react'
+import { Heading, Text, Stack, Link, Icon, Box, HStack } from '@chakra-ui/react'
 import { motion, Variants } from 'framer-motion'
 import { useTranslation } from 'next-i18next/pages'
 import { useInView } from 'hooks/useInView'
-import { RiCopyrightLine, RiGithubFill } from 'react-icons/ri'
+import { RiCopyrightLine, RiGithubFill, RiMailLine } from 'react-icons/ri'
+import { FaWhatsapp } from 'react-icons/fa'
+import { LinkButton } from 'components/ui/link-button'
+import { whatsappUrl, PERSON } from 'config/seo'
+
 const rimuruVariant: Variants = {
   shake: {
     rotate: [0, 15, 0, -15, 0],
@@ -93,6 +97,51 @@ const GetInTouch = () => {
         </InlineLink>
         .
       </Text>
+
+      {/* Primary CTAs, kept on the site's teal/cyan accent so the palette stays
+          tight. WhatsApp is the primary (filled accent) action; email the
+          secondary outline action. */}
+      <HStack
+        gap={3}
+        flexWrap="wrap"
+        justify={{ base: 'center', xl: 'flex-start' }}
+      >
+        <LinkButton
+          href={whatsappUrl()}
+          target="_blank"
+          rel="noreferrer"
+          variant="outline"
+          borderWidth="1px"
+          borderColor={{ base: 'teal.500', _dark: 'cyan.200' }}
+          color="kl.emphasis"
+          _hover={{
+            bg: {
+              base: 'rgba(49, 151, 149, 0.08)',
+              _dark: 'rgba(157, 236, 249, 0.08)',
+            },
+            borderColor: { base: 'teal.400', _dark: 'teal.300' },
+          }}
+          borderRadius="md"
+          fontWeight="semibold"
+          size="lg"
+        >
+          <Icon as={FaWhatsapp} marginEnd={2} />
+          {t('contact.cta_whatsapp')}
+        </LinkButton>
+        <LinkButton
+          href={`mailto:${PERSON.email}`}
+          variant="outline"
+          borderWidth="1px"
+          borderColor={{ base: '#595959', _dark: 'whiteAlpha.500' }}
+          _hover={{ borderColor: { base: 'teal.400', _dark: 'teal.300' } }}
+          borderRadius="md"
+          fontWeight="medium"
+          size="lg"
+        >
+          <Icon as={RiMailLine} marginEnd={2} />
+          {t('contact.cta_email')}
+        </LinkButton>
+      </HStack>
 
       <Box
         textAlign="center"

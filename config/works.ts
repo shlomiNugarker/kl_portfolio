@@ -1,3 +1,8 @@
+// Whether a project was paid client work or a self-initiated build. Surfaced as
+// a small badge on the card so prospective clients can see real commercial
+// experience at a glance.
+export type WorkType = 'client' | 'personal'
+
 export type FeaturedWork = {
   // i18n key under works.items.* in common.json (title + description).
   key: string
@@ -7,6 +12,8 @@ export type FeaturedWork = {
   ctaUrl: string
   objectPosition?: string
   tags?: string[]
+  // 'client' = real paid client work, 'personal' = self-initiated project.
+  type: WorkType
 }
 
 // Featured projects shown in the "Some of my works" section. The title and
@@ -14,11 +21,20 @@ export type FeaturedWork = {
 // `works.items.<key>`; images, link and tech tags stay here.
 export const FeaturedWorksList: FeaturedWork[] = [
   {
+    key: 'roga',
+    images: ['/works/roga1.webp', '/works/roga2.webp'],
+    ctaUrl: 'https://www.rogaevents.com/',
+    objectPosition: 'left top',
+    tags: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'i18n / RTL', 'Markdown', 'SEO'],
+    type: 'client',
+  },
+  {
     key: 'makeble',
     images: ['/works/makeble.webp'],
     ctaUrl: 'https://makeble.vercel.app/',
     objectPosition: 'left top',
     tags: ['Next.js', 'AI', 'Monaco Editor', 'Vercel'],
+    type: 'personal',
   },
   {
     key: 'wanderly',
@@ -26,12 +42,6 @@ export const FeaturedWorksList: FeaturedWork[] = [
     ctaUrl: 'https://wanderly-seven.vercel.app',
     objectPosition: 'left top',
     tags: ['Next.js 16', 'React 19', 'Mapbox', 'Claude AI', 'Socket.IO'],
-  },
-  {
-    key: 'roga',
-    images: ['/works/roga1.webp', '/works/roga2.webp'],
-    ctaUrl: 'https://www.rogaevents.com/',
-    objectPosition: 'left top',
-    tags: ['Next.js 16', 'React 19', 'Tailwind CSS 4', 'i18n / RTL', 'Markdown', 'SEO'],
+    type: 'personal',
   },
 ]

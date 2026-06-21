@@ -51,6 +51,12 @@ const FeaturedWorksSection = () => {
               objectPosition={work.objectPosition}
               tags={work.tags}
               ctaLabel={t('works.view_project')}
+              badgeLabel={t(
+                work.type === 'client'
+                  ? 'works.badge_client'
+                  : 'works.badge_personal'
+              )}
+              isClient={work.type === 'client'}
             />
           </MotionBox>
         ))}
