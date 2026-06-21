@@ -1,66 +1,153 @@
-# KL Lawingco's Personal Site
+<div align="center">
 
-Hey there! KL here. This is a v2 of my portfolio site, a complete rewrite from v1 which is shamefully a template I edited a bit back on 2018. I wanted to try out what I can do on my own in regards to UI and UX design so I reckon why not start with my porfolio.
+<img src="./public/og-image.png" alt="Shlomi Nugarker — Full-Stack Developer" width="600" />
 
-This is written in Typescript using [Next.js](https://nextjs.org/), as a SSG tool. It utilizes [ChakraUI](https://chakra-ui.com/) as well as  [Framer Motion](https://www.framer.com/motion/) for animations.
+# Shlomi Nugarker — Portfolio
 
+A fast, multilingual, accessible developer portfolio built with Next.js 16, React, TypeScript and Chakra UI.
 
-This contains bits of my details. In future I am planning to get this to cater my own blog too but for now will use dev.to links. 
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Chakra UI](https://img.shields.io/badge/Chakra%20UI-3-319795?logo=chakraui&logoColor=white)](https://chakra-ui.com/)
+[![i18n](https://img.shields.io/badge/i18n-en%20%C2%B7%20he%20%C2%B7%20ar-2dd4bf)](#-internationalization)
 
-Site is Currently deployed at <b>Netlify</b>'s Free tier .
+**Live:** [www.shlomi.dev](https://www.shlomi.dev) · [Hebrew](https://www.shlomi.dev/he) · [Arabic](https://www.shlomi.dev/ar)
 
-> Build Status 
+</div>
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4a91d5f6-a717-4b60-9f92-82c11745f2e8/deploy-status)](https://app.netlify.com/sites/kllawingco/deploys)
+---
 
+## Overview
 
-## Demo
+This is my personal portfolio — a single-page site that introduces who I am, what I build, and the projects I've shipped. It's built to be **fast, discoverable and accessible**, and it speaks three languages out of the box (English, Hebrew, Arabic) with full right-to-left support.
 
-<img src="./public/demo.gif" alt="DEMO" />
+The whole thing is content-driven: projects, services and skills live in typed config files, and every piece of copy is translatable.
 
+## ✨ Features
 
-## Local Development
+- **🌍 Internationalization (en / he / ar)** — built-in Next.js locale routing with [next-i18next](https://github.com/i18next/next-i18next). English is served at `/`, Hebrew at `/he`, Arabic at `/ar`, with a language switcher in the menu.
+- **↔️ Full RTL** — Hebrew and Arabic mirror the entire layout (not just text) using CSS logical properties; `<html dir>` is set per-locale at SSR.
+- **🔍 Comprehensive SEO** — 5 JSON-LD schemas (Person, ProfessionalService, WebSite, Organization, ItemList), per-locale Open Graph & Twitter cards, `hreflang` alternates, canonical URLs, a dynamic `sitemap.xml`, `robots.txt` and a PWA `manifest.json`.
+- **🛡️ Security headers** — HSTS, CSP, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` and more, configured in `next.config.js`.
+- **🌗 Dark / light mode** — powered by [next-themes](https://github.com/pacocoursey/next-themes), with no flash on load.
+- **📱 Responsive & accessible** — tuned for mobile, tablet and desktop; semantic markup, ARIA labels and keyboard-friendly controls.
+- **🎞️ Motion** — subtle, performant animations with [Framer Motion](https://www.framer.com/motion/).
+- **🖼️ Multi-image project cards** — featured work supports an image gallery with dot navigation.
+- **⚡ Performance** — SSG pages, `next/image` optimization, modern AVIF/WebP output, and tree-shaken package imports.
 
-This is just a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 🛠️ Tech Stack
 
-Please use at least Node v18.17 (required by Next.js 16); the recommended version is Node v22 LTS. There's a `.nvmrc`, you can run `nvm use` if you have nvm installed.
+| Area | Tools |
+| --- | --- |
+| **Framework** | Next.js 16 (Pages Router, SSG) |
+| **Language** | TypeScript 5.3 |
+| **UI** | React 18.3, Chakra UI 3, Emotion 11 |
+| **Animation** | Framer Motion 12 |
+| **Theming** | next-themes |
+| **i18n** | next-i18next 16, i18next 26, react-i18next 17 |
+| **Icons** | react-icons 5 |
+| **Tooling** | ESLint 9, Prettier 3 |
 
-## Getting Started
+## 📂 Project Structure
 
-This project heavily favors <b>yarn</b> over npm. 
+```
+.
+├── pages/                  # Routes (Pages Router)
+│   ├── index.tsx           # Home (the whole portfolio)
+│   ├── _app.tsx            # Providers (Chakra, theme, i18n, direction)
+│   ├── _document.tsx       # <html lang / dir> per locale
+│   ├── sitemap.xml.tsx     # Dynamic, locale-aware sitemap
+│   ├── 404.tsx / 500.tsx   # Custom error pages
+├── components/
+│   ├── Sidebar/            # Hero
+│   ├── Menu/               # Nav + language switcher
+│   ├── Sections/           # About, Services, FeaturedWorks, GetInTouch
+│   ├── Misc/               # OpenGraphHead, StructuredData, ScrollMore…
+│   └── ui/                 # Color-mode + link-button helpers
+├── config/                 # Typed content & config
+│   ├── seo.ts              # Canonical URLs + per-locale meta
+│   ├── works.ts            # Featured projects (multi-image)
+│   ├── services.ts, skills.ts, sidebar.ts, navigation.ts, theme.ts
+├── public/
+│   ├── locales/{en,he,ar}/common.json   # Translations
+│   ├── works/              # Project cover images
+│   ├── robots.txt, manifest.json, og-image.png
+├── scripts/
+│   └── generate-og-image.js  # Builds the 1200×630 OG image
+├── hooks/                  # Custom React hooks
+└── styles/                 # Global CSS
+```
 
-So to set things up you need to run
+## 🚀 Getting Started
+
+**Prerequisites:** Node ≥ 18.17 (Next.js 16 requirement); **v22 LTS recommended** — there's an `.nvmrc`, so `nvm use` picks the right version. This project uses **yarn**.
 
 ```bash
+# clone
+git clone https://github.com/shlomiNugarker/shlomi_portfolio.git
+cd shlomi_portfolio
+
+# install
 yarn install
-```
-or just
-```bash
-yarn
-```
 
-Then to run the development server:
-
-```bash
+# run the dev server
 yarn dev
 ```
 
-and it should open at
+Then open <http://localhost:3000>.
 
-> http://localhost:3000/
+## 📜 Scripts
 
+| Script | Description |
+| --- | --- |
+| `yarn dev` | Start the development server |
+| `yarn build` | Production build |
+| `yarn start` | Serve the production build |
+| `yarn lint` | Run ESLint |
+| `yarn typecheck` | Type-check with `tsc --noEmit` |
+| `yarn format` | Format the codebase with Prettier |
+| `yarn format:check` | Check formatting without writing |
 
-## Deployment
+## 🌍 Internationalization
 
-Nothing special, its setup at Netlify end (in other words: no `netlify.toml`), just merge a feat branch to master branch and you're good. 
+All copy lives in `public/locales/<locale>/common.json` — one file per language (`en`, `he`, `ar`). To edit or translate text, change the matching key in each file.
 
+- **Routing:** the default locale (`en`) is served unprefixed (`/`); others are prefixed (`/he`, `/ar`). Locale is auto-detected from the `Accept-Language` header and remembered via a `NEXT_LOCALE` cookie.
+- **RTL:** `he` and `ar` render with `dir="rtl"`. Layout mirrors via logical CSS properties, so adding an RTL language is mostly a translation file plus marking it RTL in `config/seo.ts`.
+- **Adding a language:** add the locale to `next-i18next.config.js` and `config/seo.ts`, then drop in `public/locales/<locale>/common.json`.
 
-## Credits
+## 🔍 SEO & Assets
 
-Logo and Avatar are made by my friend : <b>KojiroArt</b>.
-Please check him out at his [`twitter`](https://twitter.com/kojiro_ai) account.  
+- Per-locale meta, canonical URLs and the site URL live in [`config/seo.ts`](./config/seo.ts).
+- Head tags are emitted by [`components/Misc/OpenGraphHead.tsx`](./components/Misc/OpenGraphHead.tsx) and the JSON-LD by [`components/Misc/StructuredData.tsx`](./components/Misc/StructuredData.tsx).
+- The social share image (`public/og-image.png`, 1200×630) is generated from the avatar:
 
-And of course 
-Made with Love and :coffee:
+  ```bash
+  node scripts/generate-og-image.js
+  ```
 
-KL 
+## ☁️ Deployment
+
+The site is a standard Next.js app and deploys cleanly to any Next-capable host (Vercel recommended). For a self-hosted build:
+
+```bash
+yarn build
+yarn start
+```
+
+> Note: `sitemap.xml` is rendered on-demand (`getServerSideProps`), so deploy in a server/SSR mode rather than a fully static export.
+
+## 🙏 Acknowledgements
+
+Originally forked from [`klawingco/kl_portfolio`](https://github.com/klawingco/kl_portfolio) — rebuilt and extensively customized: upgraded to Next 16 / Chakra UI 3, re-themed, and extended with multilingual support, RTL, a full SEO suite and new project content.
+
+---
+
+<div align="center">
+
+Made with ❤ and ☕ by **Shlomi Nugarker**
+
+[Website](https://www.shlomi.dev) · [GitHub](https://github.com/shlomiNugarker) · [LinkedIn](https://www.linkedin.com/in/shlomi-nugarker-b89777155/)
+
+</div>
