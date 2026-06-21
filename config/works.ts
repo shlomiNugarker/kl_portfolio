@@ -6,16 +6,16 @@ export type FeaturedWork = {
   objectPosition?: string
 }
 
-// Featured projects shown in the "Some of my works" section. These are
-// placeholders — swap in your real projects (title, description, link, and an
-// image in /public/works) when ready.
+// Featured projects shown in the "Some of my works" section. Add real projects
+// here (title, description, link, and an image in /public/works).
 export const FeaturedWorksList: FeaturedWork[] = [
   {
-    title: 'Project One',
+    title: 'Makeble',
     description:
-      'A short description of the project — what it does, your role, and the stack you used.',
-    src: '/works/placeholder.svg',
-    ctaUrl: '#',
+      'An AI-powered website builder — describe what you want in plain English or Hebrew and it generates, previews and deploys a Next.js app live. Built with Next.js, with a Monaco editor and one-click deploy. "Describe it. Ship it."',
+    src: '/works/makeble.webp',
+    ctaUrl: 'https://makeble.vercel.app/',
+    objectPosition: 'left top',
   },
   {
     title: 'Project Two',
