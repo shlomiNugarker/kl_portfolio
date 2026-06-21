@@ -24,6 +24,20 @@
     left: -66%;
   }
 }
+
+/* Wrapper that holds the decorative arc. It spans the sidebar box so the arc's
+   absolute positioning (left/top %) resolves the same as before. */
+.circleWrap{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* RTL (he/ar): the hero moves to the right, so mirror the whole arc. We flip
+   this wrapper (not the arc node) because framer-motion writes transform:scale
+   on the arc itself, which would override a transform set there. */
+:global([dir='rtl']) .circleWrap{
+  transform: scaleX(-1);
+}
 .dark{
   border: 3px solid black;
   border-left-color: transparent;

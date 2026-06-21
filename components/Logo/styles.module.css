@@ -1,7 +1,8 @@
 .logo{
   position: fixed;
   top: 3%;
-  left: 3.5%;
+  /* Logical start edge: left in LTR, right in RTL — mirrors with the nav. */
+  inset-inline-start: 3.5%;
   cursor: pointer;
   z-index: 100;
 }

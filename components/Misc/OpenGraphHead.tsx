@@ -1,25 +1,78 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import {
+  SITE_URL,
+  PERSON,
+  LOCALES,
+  DEFAULT_LOCALE,
+  META,
+  localeUrl,
+  type Locale,
+} from 'config/seo'
 
-const SITE_URL = 'https://www.shlomi.dev'
+const OG_IMAGE = `${SITE_URL}/og-image.png`
 
-const OpenGraphHead = () => (
-  <Head>
-    <title>Shlomi Nugarker | Full-Stack Developer</title>
-    <meta
-      name="description"
-      content="Shlomi Nugarker — full-stack developer based in Israel, building web apps end-to-end from database to interface."
-    />
-    <link rel="canonical" href={SITE_URL} />
-    <meta property="og:title" content="Shlomi Nugarker | Full-Stack Developer" />
-    <meta property="og:site_name" content="Shlomi Nugarker" />
-    <meta property="og:url" content={SITE_URL} />
-    <meta
-      property="og:description"
-      content="Full-stack developer based in Israel. I build websites and web applications end-to-end — from the database and API to the interface."
-    />
-    <meta property="og:type" content="profile" />
-    <meta property="og:image" content={`${SITE_URL}/avatar.jpg`} />
-    <meta name="twitter:card" content="summary" />
-  </Head>
-)
+const ogLocale: Record<Locale, string> = {
+  en: 'en_US',
+  he: 'he_IL',
+  ar: 'ar_AR',
+}
+
+const OpenGraphHead = () => {
+  const router = useRouter()
+  const locale = (router.locale as Locale) || DEFAULT_LOCALE
+  const meta = META[locale] ?? META[DEFAULT_LOCALE]
+  const canonical = localeUrl(locale)
+
+  return (
+    <Head>
+      <title>{meta.title}</title>
+      <meta name="description" content={meta.description} />
+      <meta name="keywords" content={meta.keywords} />
+      <meta name="author" content={PERSON.name} />
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href={canonical} />
+
+      {/* hreflang alternates — one per locale + x-default */}
+      {LOCALES.map((l) => (
+        <link
+          key={l}
+          rel="alternate"
+          hrefLang={l}
+          href={localeUrl(l)}
+        />
+      ))}
+      <link
+        rel="alternate"
+        hrefLang="x-default"
+        href={localeUrl(DEFAULT_LOCALE)}
+      />
+
+      {/* Open Graph */}
+      <meta property="og:type" content="profile" />
+      <meta property="og:site_name" content={meta.siteName} />
+      <meta property="og:title" content={meta.title} />
+      <meta property="og:description" content={meta.description} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:locale" content={ogLocale[locale]} />
+      <meta property="og:image" content={OG_IMAGE} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={meta.ogImageAlt} />
+      <meta property="profile:first_name" content={PERSON.firstName} />
+      <meta property="profile:last_name" content={PERSON.lastName} />
+      <meta property="profile:username" content={PERSON.username} />
+
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={meta.title} />
+      <meta name="twitter:description" content={meta.description} />
+      <meta name="twitter:image" content={OG_IMAGE} />
+      <meta name="twitter:image:alt" content={meta.ogImageAlt} />
+      <meta name="twitter:creator" content={PERSON.twitter} />
+      <meta name="twitter:site" content={PERSON.twitter} />
+    </Head>
+  )
+}
+
 export default OpenGraphHead

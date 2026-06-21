@@ -1,0 +1,11 @@
+# robots.txt for shlomi.dev
+User-agent: *
+Allow: /
+
+Sitemap: https://www.shlomi.dev/sitemap.xml
+
+Crawl-delay: 1
+
+Disallow: /api/
+Disallow: /_next/
+Disallow: /404

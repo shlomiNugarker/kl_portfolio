@@ -7,36 +7,16 @@ import {
 } from 'react-icons/si'
 
 export type Service = {
-  title: string
-  description: string
+  // i18n key under services.items.* in common.json; resolves to title + description.
+  key: string
   icon: IconType
 }
 
-// What I offer as a freelancer. Edit freely — this drives the "What I do"
-// services section.
+// What I offer as a freelancer. The copy lives in public/locales/*/common.json
+// under `services.items.<key>`; this just pairs each entry with its icon/order.
 export const Services: Service[] = [
-  {
-    title: 'Web Applications',
-    description:
-      'Small-to-mid web apps built end-to-end — from data model and API to the interface users actually touch.',
-    icon: SiReact,
-  },
-  {
-    title: 'Frontend Development',
-    description:
-      'Responsive, accessible interfaces with React, Next.js and TypeScript that stay fast and easy to maintain.',
-    icon: SiNextdotjs,
-  },
-  {
-    title: 'Backend & APIs',
-    description:
-      'REST APIs and server-side logic with Node.js and Express, wired to the right database for the job.',
-    icon: SiNodedotjs,
-  },
-  {
-    title: 'Databases & Integration',
-    description:
-      'Data modeling and integrations across PostgreSQL, MongoDB, Supabase and Firebase.',
-    icon: SiPostgresql,
-  },
+  { key: 'web_apps', icon: SiReact },
+  { key: 'frontend', icon: SiNextdotjs },
+  { key: 'backend', icon: SiNodedotjs },
+  { key: 'databases', icon: SiPostgresql },
 ]

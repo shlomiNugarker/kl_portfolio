@@ -11,6 +11,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useColorModeValue } from 'components/ui/color-mode'
+import { useTranslation } from 'next-i18next/pages'
 import styles from './styles.module.css'
 import { Skill, Skills, splitSkills } from 'config/skills'
 
@@ -66,6 +67,7 @@ const SkillList = ({
   )
 }
 const SkillSetModal = ({ isOpen, onClose }: ISkillSetModal) => {
+  const { t } = useTranslation('common')
   const frontendCols = splitSkills(Skills.frontend)
   const backendCols = splitSkills(Skills.backend)
   const dataBaseCols = splitSkills(Skills.database)
@@ -81,15 +83,15 @@ const SkillSetModal = ({ isOpen, onClose }: ISkillSetModal) => {
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.Header>Full Skill Set List</Dialog.Header>
+            <Dialog.Header>{t('skills.modal_title')}</Dialog.Header>
             <Dialog.CloseTrigger asChild>
               <CloseButton size="sm" />
             </Dialog.CloseTrigger>
             <Dialog.Body className={styles.skillModal}>
-              <SkillList title="Frontend" columns={frontendCols} />
-              <SkillList title="Backend" columns={backendCols} />
-              <SkillList title="Databases" columns={dataBaseCols} />
-              <SkillList title="Tools & Platforms" columns={toolsCols} />
+              <SkillList title={t('skills.frontend')} columns={frontendCols} />
+              <SkillList title={t('skills.backend')} columns={backendCols} />
+              <SkillList title={t('skills.databases')} columns={dataBaseCols} />
+              <SkillList title={t('skills.tools')} columns={toolsCols} />
             </Dialog.Body>
           </Dialog.Content>
         </Dialog.Positioner>

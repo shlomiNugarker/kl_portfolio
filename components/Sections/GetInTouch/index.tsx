@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { Heading, Text, Stack, Link, Icon, Box } from '@chakra-ui/react'
 import { motion, Variants } from 'framer-motion'
+import { useTranslation } from 'next-i18next/pages'
 import { useInView } from 'hooks/useInView'
 import { RiCopyrightLine, RiGithubFill } from 'react-icons/ri'
 const rimuruVariant: Variants = {
@@ -25,13 +26,14 @@ const rimuruVariant: Variants = {
 }
 
 const GetInTouch = () => {
+  const { t } = useTranslation('common')
   const [ref, inView] = useInView()
   return (
     <Stack
       width={{ base: '99%', xl: '75%' }}
       height="100%"
       gap={{ base: 6, xl: 8 }}
-      textAlign={{ base: 'center', xl: 'left' }}
+      textAlign={{ base: 'center', xl: 'start' }}
       as="footer"
     >
       <Heading
@@ -40,7 +42,7 @@ const GetInTouch = () => {
           fontVariantCaps: 'small-caps',
         }}
       >
-        Say hi!{' '}
+        {t('contact.heading')}{' '}
         <Text as="span" fontSize="2xl" color="kl.emphasis">
           <motion.div
             style={{ display: 'inline-block' }}
@@ -53,22 +55,21 @@ const GetInTouch = () => {
         </Text>
       </Heading>
       <Text color="kl.description">
-        Have a project in mind, or just want to talk shop? I&apos;m always happy
-        to hear about new ideas and collaborations. Feel free to reach out on{' '}
+        {t('contact.body')}{' '}
         <Link
           href="https://www.linkedin.com/in/shlomi-nugarker-b89777155/"
           target="_blank"
           rel="noreferrer"
         >
-          LinkedIn
+          {t('contact.linkedin')}
         </Link>{' '}
-        or shoot me an{' '}
+        {t('contact.or_email')}{' '}
         <Link
           href="mailto:shlomin.dev@gmail.com"
           target="_blank"
           rel="noreferrer"
         >
-          email
+          {t('contact.email')}
         </Link>
         .
       </Text>
@@ -89,7 +90,7 @@ const GetInTouch = () => {
         >
           <Text as="span">
             <Icon as={RiGithubFill} h={6} w={6} /> <br />
-            Shlomi Nugarker <Icon as={RiCopyrightLine} /> 2026
+            {t('sidebar.name')} <Icon as={RiCopyrightLine} /> 2026
           </Text>
         </Link>
       </Box>

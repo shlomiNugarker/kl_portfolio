@@ -9,10 +9,12 @@ import {
 import { LinkButton } from 'components/ui/link-button'
 import { NavLinks } from 'config/navigation'
 import { useColorMode, useColorModeValue } from 'components/ui/color-mode'
+import { useTranslation } from 'next-i18next/pages'
 import { BsSun as SunIcon, BsMoon as MoonIcon } from 'react-icons/bs'
 import { motion, useCycle } from 'framer-motion'
 import styles from './styles.module.css'
 import MobileMenu from './toggle'
+import LanguageSwitcher from './LanguageSwitcher'
 import { ThemeMode, mobileBreakpointsMap } from 'config/theme'
 import { menuAnim } from 'config/animations'
 import useScrollDirection, { ScrollDirection } from 'hooks/useScrollDirection'
@@ -20,6 +22,7 @@ import useScrollDirection, { ScrollDirection } from 'hooks/useScrollDirection'
 const MotionContainer = motion.create(Container)
 
 const Navigation = () => {
+  const { t } = useTranslation('common')
   const { toggleColorMode, colorMode } = useColorMode()
   const [isOpen, toggleOpen] = useCycle(false, true)
   const isMobile = useBreakpointValue(mobileBreakpointsMap)
@@ -60,7 +63,7 @@ const Navigation = () => {
         top="3%"
       >
         <IconButton
-          aria-label="Color Mode"
+          aria-label={t('a11y.color_mode')}
           variant="ghost"
           boxShadow="none"
           onClick={toggleColorMode}
@@ -68,6 +71,7 @@ const Navigation = () => {
         >
           <Icon />
         </IconButton>
+        <LanguageSwitcher />
         <MobileMenu isDarkMode={IsDark} toggle={toggleOpen} isOpen={isOpen} />
       </Box>
 
@@ -76,7 +80,7 @@ const Navigation = () => {
         backgroundColor={bg}
         maxWidth={{ base: '100%', sm: '100%', lg: '50%', xl: '60%' }}
         className={styles.menu}
-        right={{
+        insetEnd={{
           lg:
             !isMobile && scrollDirection === ScrollDirection.Down
               ? '2%'
@@ -121,9 +125,9 @@ const Navigation = () => {
         >
           {NavLinks.map((link, index) => (
             <Box
-              key={link.label}
+              key={link.key}
               width={{ base: '100%', lg: 'auto' }}
-              textAlign={{ base: 'center', lg: 'left' }}
+              textAlign={{ base: 'center', lg: 'start' }}
               marginY={index === 0 ? undefined : { base: 2, lg: 0 }}
             >
               <LinkButton
@@ -138,21 +142,22 @@ const Navigation = () => {
                 rel="noreferrer"
                 onClick={onMenuItemClick}
               >
-                {link.label}
+                {t(`nav.${link.key}`)}
               </LinkButton>
             </Box>
           ))}
           {!isMobile && (
-            <Box>
+            <Box display="flex" alignItems="center">
               <IconButton
                 marginX={1}
-                aria-label="Color Mode"
+                aria-label={t('a11y.color_mode')}
                 variant="ghost"
                 boxShadow="none"
                 onClick={toggleColorMode}
               >
                 <Icon />
               </IconButton>
+              <LanguageSwitcher />
             </Box>
           )}
         </Flex>

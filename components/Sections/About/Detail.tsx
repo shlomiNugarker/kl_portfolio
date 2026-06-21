@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { Tooltip } from 'components/ui/tooltip'
 import { useColorModeValue } from 'components/ui/color-mode'
+import { useTranslation } from 'next-i18next/pages'
 import {
   SiReact,
   SiNextdotjs,
@@ -28,13 +29,14 @@ type ISkillSetModal = {
 }
 
 const Detail = ({ onOpen }: ISkillSetModal) => {
+  const { t } = useTranslation('common')
   const emphasis = useColorModeValue('teal.500', 'cyan.200')
 
   return (
     <Stack
       width={{ base: '100%', xl: '70%' }}
       gap={{ base: 6, xl: 8 }}
-      textAlign={{ base: 'center', xl: 'left' }}
+      textAlign={{ base: 'center', xl: 'start' }}
       alignItems={{ base: 'center', xl: 'stretch' }}
       as="section"
     >
@@ -46,23 +48,21 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
           fontVariantCaps: 'small-caps',
         }}
       >
-        About me.
+        {t('about.heading')}
       </Heading>
       <Text color="kl.description">
-        I&apos;m a <b>full-stack developer</b> based in Israel, working as a{' '}
-        <b>freelancer</b>. I build websites and small-to-mid web applications{' '}
-        <Tooltip content="Database, API and UI — the whole thing.">
+        {t('about.lead_1')}{' '}
+        <Tooltip content={t('about.end_to_end_tip')}>
           <Text as="span" color="kl.emphasis">
-            <b>end-to-end</b>
+            <b>{t('about.end_to_end')}</b>
           </Text>
         </Tooltip>{' '}
-        — from the database and API to the interface users actually touch.
+        {t('about.lead_2')}
         <br /> <br />
-        I try to keep the code simple enough that the next person to open it can
-        pick it up quickly. Here are a few technologies I reach for, fueled by{' '}
-        <Tooltip content="Lots of it.">
+        {t('about.body')}{' '}
+        <Tooltip content={t('about.coffee_tip')}>
           <Text as="span" color="kl.emphasis">
-            coffee
+            {t('about.coffee')}
           </Text>
         </Tooltip>{' '}
         <Icon as={GiCoffeePot} color={emphasis} />.
@@ -141,10 +141,10 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
             as="button"
             color="kl.emphasis"
             fontSize="smaller"
-            textAlign="left"
+            textAlign="start"
             onClick={onOpen}
           >
-            See my full arsenal <Icon as={IoMdOpen} />
+            {t('about.see_skills')} <Icon as={IoMdOpen} />
           </Text>
         </Box>
       </SimpleGrid>

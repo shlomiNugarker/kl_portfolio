@@ -20,6 +20,7 @@ export type FeaturedCardProps = {
   description: string
   objectPosition?: string
   ctaUrl: string
+  ctaLabel: string
   tags?: string[]
   // Kept for API compatibility with the section; layout is now uniform.
   isMobile?: boolean
@@ -63,6 +64,7 @@ const FeaturedCard = ({
   description,
   objectPosition,
   ctaUrl,
+  ctaLabel,
   tags,
 }: FeaturedCardProps) => {
   const bg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100')
@@ -117,7 +119,7 @@ const FeaturedCard = ({
         flex="1"
         paddingX={{ base: 5, md: 7 }}
         paddingY={{ base: 5, md: 6 }}
-        textAlign="left"
+        textAlign="start"
       >
         <Stack gap={2}>
           <HStack gap={3} align="baseline">
@@ -178,7 +180,7 @@ const FeaturedCard = ({
           target="_blank"
           marginTop="auto"
         >
-          View Project
+          {ctaLabel}
         </LinkButton>
       </Stack>
     </Box>

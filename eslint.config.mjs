@@ -6,7 +6,9 @@ const config = [
   ...next,
   ...nextCoreWebVitals,
   {
-    ignores: ['.next/**', 'node_modules/**', 'out/**'],
+    // scripts/ are build-time Node utilities (CommonJS), not part of the app
+    // bundle, so they're outside the Next/TS lint scope.
+    ignores: ['.next/**', 'node_modules/**', 'out/**', 'scripts/**'],
   },
   {
     rules: {

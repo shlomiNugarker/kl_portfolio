@@ -1,4 +1,5 @@
 import type { JSX } from 'react'
+import type { GetStaticProps } from 'next'
 import {
   Grid,
   GridItem,
@@ -7,7 +8,10 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations'
+import nextI18NextConfig from '../next-i18next.config'
 import OpenGraphHead from 'components/Misc/OpenGraphHead'
+import StructuredData from 'components/Misc/StructuredData'
 import FadeInLayout from 'components/Layout/FadeWhenVisible'
 import Menu from 'components/Menu'
 import Sidebar from 'components/Sidebar'
@@ -36,6 +40,7 @@ const Portfolio = (): JSX.Element => {
   return (
     <>
       <OpenGraphHead />
+      <StructuredData />
       <Menu />
       <Grid
         id="mainGrid"
@@ -132,5 +137,15 @@ const Portfolio = (): JSX.Element => {
     </>
   )
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(
+      locale ?? 'en',
+      ['common'],
+      nextI18NextConfig
+    )),
+  },
+})
 
 export default Portfolio

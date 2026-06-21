@@ -1,9 +1,11 @@
 import { Box, Icon, Link, useBreakpointValue } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { RiMouseLine } from 'react-icons/ri'
 import { motion, Variants, AnimatePresence } from 'framer-motion'
 import useScrollDirection, { ScrollDirection } from 'hooks/useScrollDirection'
 import { mobileBreakpointsMap } from 'config/theme'
+import { isRtl } from 'config/seo'
 
 const scrollMoreVariants: Variants = {
   initial: {
@@ -48,6 +50,8 @@ const emailVariants: Variants = {
 }
 
 const ScrollMore = () => {
+  const { locale } = useRouter()
+  const rtl = isRtl(locale)
   const isMobile = useBreakpointValue(mobileBreakpointsMap)
   const scrollDirection = useScrollDirection(false, isMobile)
   const emailColor = useColorModeValue('gray.800', 'gray.400')
@@ -57,8 +61,10 @@ const ScrollMore = () => {
     <Box
       position="fixed"
       bottom="1em"
-      right="3%"
-      display={isMobile ? 'none' : 'block'}
+      insetEnd="3%"
+      // Pure-CSS responsive hide (no hydration flash): the vertical email only
+      // shows on the wide xl layout, never on mobile/tablet widths.
+      display={{ base: 'none', xl: 'block' }}
     >
       <AnimatePresence>
         {[ScrollDirection.Initial, ScrollDirection.Up].includes(
@@ -89,9 +95,18 @@ const ScrollMore = () => {
             whileHover={{ y: -50 }}
             style={{
               writingMode: 'vertical-rl',
-              position: 'fixed',
-              right: '8%',
-              bottom: '-8%',
+              insetInlineEnd: '8%',
+              // In LTR the node is fixed-positioned to the viewport bottom. In
+              // RTL we drop `position: fixed`/`bottom` so it stays inside the
+              // parent Box (which already owns the fixed bottom/end anchor) and
+              // mirrors correctly instead of escaping it.
+              ...(rtl
+                ? {}
+                : { position: 'fixed', bottom: '-8%' }),
+              // The node can be position:fixed (LTR), so it escapes the parent
+              // Box's responsive `display:none`; hide it here too on mobile.
+              // Show only once we positively know we're on the wide layout.
+              display: isMobile === false ? undefined : 'none',
             }}
           >
             <Link
@@ -118,8 +133,13 @@ const ScrollMore = () => {
                 width: '2px',
                 opacity: 0.5,
                 content: '""',
-                flex: 1,
-                height: { base: '5em', xl: '8em' },
+                // Fixed-length accent line under the email. In vertical writing
+                // mode the block axis is horizontal, so the visible length is
+                // the `width`-mapped value — set both to keep it short and equal
+                // in LTR and RTL (a responsive object on ::after didn't apply).
+                height: '8em',
+                flexGrow: 0,
+                flexShrink: 0,
                 margin: 'auto',
                 marginTop: '10px',
               }}

@@ -1,0 +1,30 @@
+{
+  "name": "Shlomi Nugarker - Full-Stack Developer",
+  "short_name": "Shlomi.dev",
+  "description": "Freelance Full-Stack Developer specializing in React, Next.js, and Node.js",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#171717",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["portfolio", "business", "web development"]
+}

@@ -2,14 +2,15 @@
 // desktop (`#`) but to the about section on mobile, so its href is resolved at
 // render time via the `mobileHref` flag.
 export type NavLink = {
-  label: string
+  // i18n key under nav.* in common.json.
+  key: 'about' | 'services' | 'works' | 'contact'
   href: string
   mobileHref?: string
 }
 
 export const NavLinks: NavLink[] = [
-  { label: 'About', href: '#', mobileHref: '#aboutMe' },
-  { label: 'Services', href: '#services' },
-  { label: 'Works', href: '#works' },
-  { label: 'Contact', href: '#contact' },
+  { key: 'about', href: '#', mobileHref: '#aboutMe' },
+  { key: 'services', href: '#services' },
+  { key: 'works', href: '#works' },
+  { key: 'contact', href: '#contact' },
 ]

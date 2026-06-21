@@ -10,6 +10,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { useColorMode } from 'components/ui/color-mode'
+import { useTranslation } from 'next-i18next/pages'
 import { motion } from 'framer-motion'
 import styles from './styles.module.css'
 import {
@@ -31,6 +32,7 @@ const MotionButton: any = motion.create(Button)
 const MotionBox = motion.create(Box)
 
 const Sidebar = () => {
+  const { t } = useTranslation('common')
   const { colorMode } = useColorMode()
   const display = useBreakpointValue({ base: 'none', lg: 'block' })
   const titleSize = useBreakpointValue({ base: '4xl', md: '5xl' } as const)
@@ -43,15 +45,19 @@ const Sidebar = () => {
       maxWidth={{ xl: '34%' }}
       top={{ lg: 0 }}
     >
-      <motion.div
-        id="sidebarCircle"
-        className={`${styles.sidebar} ${
-          colorMode === 'light' ? styles.dark : ''
-        }`}
-        variants={scaleUp}
-        style={{ display: display }}
-        animate={colorMode === 'dark' ? 'animate' : 'lightMode'}
-      ></motion.div>
+      {/* The arc is mirrored for RTL via the wrapper (.circleWrap), because
+          framer-motion writes transform:scale on the arc node itself. */}
+      <div className={styles.circleWrap}>
+        <motion.div
+          id="sidebarCircle"
+          className={`${styles.sidebar} ${
+            colorMode === 'light' ? styles.dark : ''
+          }`}
+          variants={scaleUp}
+          style={{ display: display }}
+          animate={colorMode === 'dark' ? 'animate' : 'lightMode'}
+        ></motion.div>
+      </div>
       <Container
         padding={0}
         margin={0}
@@ -63,7 +69,7 @@ const Sidebar = () => {
           variants={stagger}
           gap={3}
           w="100%"
-          textAlign={{ base: 'center', xl: 'left' }}
+          textAlign={{ base: 'center', xl: 'start' }}
           alignItems={{ base: 'center', xl: 'flex-start' }}
         >
           <MotionText
@@ -71,16 +77,16 @@ const Sidebar = () => {
             color="kl.accent"
             fontWeight="light"
           >
-            Hey there! I am
+            {t('sidebar.greeting')}
           </MotionText>
           <MotionHeading
             as="h1"
             size="xl"
-            paddingRight={{ lg: '20' }}
+            paddingEnd={{ lg: '20' }}
             textTransform="uppercase"
             variants={fadeInUp}
           >
-            Shlomi Nugarker
+            {t('sidebar.name')}
           </MotionHeading>
           <MotionHeading
             as="h2"
@@ -93,9 +99,9 @@ const Sidebar = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Full-Stack
+            {t('sidebar.headline_line1')}
             <br />
-            Developer.
+            {t('sidebar.headline_line2')}
           </MotionHeading>
           <MotionText
             colorScheme="gray"
@@ -103,23 +109,23 @@ const Sidebar = () => {
             className={styles.marginTopForce}
             variants={fadeInUp}
           >
-            Based in Tel Aviv, Israel . . .
+            {t('sidebar.location')}
           </MotionText>
 
           <MotionText
             color="kl.description"
             fontSize="small"
-            paddingRight={{ lg: '12' }}
+            paddingEnd={{ lg: '12' }}
             variants={fadeInUp}
             maxWidth={{ base: '100%', lg: '80%' }}
           >
-            Thanks for stopping by!
+            {t('sidebar.intro')}
             <Text color="kl.emphasis" as="span">
               {' '}
-              Welcome.
+              {t('sidebar.welcome')}
             </Text>
-            <br />I build websites and small-to-mid web applications end-to-end
-            — from the database and API to the interface users actually touch.
+            <br />
+            {t('sidebar.description')}
           </MotionText>
           <MotionButton
             size="lg"
@@ -136,7 +142,7 @@ const Sidebar = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Get in touch!
+            {t('sidebar.cta')}
           </MotionButton>
 
           <MotionBox
@@ -150,7 +156,7 @@ const Sidebar = () => {
                 <Link
                   color="kl.description"
                   key={socMedia.label}
-                  aria-label={socMedia.label}
+                  aria-label={t(`social.${socMedia.label.toLowerCase()}`)}
                   rel={isExternal ? 'noreferrer' : undefined}
                   width={8}
                   href={socMedia.href}

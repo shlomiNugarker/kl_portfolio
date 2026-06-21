@@ -1,0 +1,98 @@
+{
+  "sidebar": {
+    "greeting": "Hey there! I am",
+    "name": "Shlomi Nugarker",
+    "headline_line1": "Full-Stack",
+    "headline_line2": "Developer.",
+    "location": "Based in Tel Aviv, Israel . . .",
+    "intro": "Thanks for stopping by!",
+    "welcome": "Welcome.",
+    "description": "I build websites and small-to-mid web applications end-to-end — from the database and API to the interface users actually touch.",
+    "cta": "Get in touch!"
+  },
+  "about": {
+    "heading": "About me.",
+    "lead_1": "I'm a full-stack developer based in Israel, working as a freelancer. I build websites and small-to-mid web applications",
+    "end_to_end": "end-to-end",
+    "end_to_end_tip": "Database, API and UI — the whole thing.",
+    "lead_2": "— from the database and API to the interface users actually touch.",
+    "body": "I try to keep the code simple enough that the next person to open it can pick it up quickly. Here are a few technologies I reach for, fueled by",
+    "coffee": "coffee",
+    "coffee_tip": "Lots of it.",
+    "see_skills": "See my full arsenal"
+  },
+  "services": {
+    "heading": "What i do.",
+    "description": "I work as a freelancer with companies and individuals, building and shipping web products. Here is how I can help.",
+    "items": {
+      "web_apps": {
+        "title": "Web Applications",
+        "description": "Small-to-mid web apps built end-to-end — from data model and API to the interface users actually touch."
+      },
+      "frontend": {
+        "title": "Frontend Development",
+        "description": "Responsive, accessible interfaces with React, Next.js and TypeScript that stay fast and easy to maintain."
+      },
+      "backend": {
+        "title": "Backend & APIs",
+        "description": "REST APIs and server-side logic with Node.js and Express, wired to the right database for the job."
+      },
+      "databases": {
+        "title": "Databases & Integration",
+        "description": "Data modeling and integrations across PostgreSQL, MongoDB, Supabase and Firebase."
+      }
+    }
+  },
+  "works": {
+    "heading": "Some of my works.",
+    "description": "Check out some of the works I made at freelancing, company projects and even case studies.",
+    "view_project": "View Project",
+    "items": {
+      "makeble": {
+        "title": "Makeble",
+        "description": "An AI-powered website builder — describe what you want in plain English or Hebrew and it generates, previews and deploys a Next.js app live. Built with a Monaco editor and one-click deploy. \"Describe it. Ship it.\""
+      },
+      "wanderly": {
+        "title": "Wanderly",
+        "description": "A social network for travelers — plan multi-stop trips, share them as posts, and layer community routes onto an interactive map. Integrates Claude AI for itinerary generation and real-time Socket.IO for a live feed."
+      }
+    }
+  },
+  "skills": {
+    "modal_title": "Full Skill Set List",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "databases": "Databases",
+    "tools": "Tools & Platforms"
+  },
+  "contact": {
+    "heading": "Say hi!",
+    "body": "Have a project in mind, or just want to talk shop? I'm always happy to hear about new ideas and collaborations. Feel free to reach out on",
+    "linkedin": "LinkedIn",
+    "or_email": "or shoot me an",
+    "email": "email"
+  },
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "works": "Works",
+    "contact": "Contact"
+  },
+  "social": {
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "a11y": {
+    "color_mode": "Color Mode",
+    "toggle_menu": "Toggle navigation menu",
+    "language": "Change language"
+  },
+  "error": {
+    "back_home": "Back home",
+    "404_title": "Page not found",
+    "404_message": "Looks like you wandered off the map. The page you're looking for doesn't exist or has moved.",
+    "500_title": "Something went wrong",
+    "500_message": "An unexpected error occurred on our end. Try refreshing, or head back home."
+  }
+}

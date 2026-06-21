@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { Heading, Text, Stack, SimpleGrid, Box } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'next-i18next/pages'
 import FeaturedCard from './FeaturedCard'
 import { fadeInUpSlower, galleryStagger } from 'config/animations'
 import { FeaturedWorksList } from 'config/works'
@@ -9,12 +10,13 @@ const MotionGrid = motion.create(SimpleGrid)
 const MotionBox = motion.create(Box)
 
 const FeaturedWorksSection = () => {
+  const { t } = useTranslation('common')
   return (
     <Stack
       width={{ base: '99%', xl: '75%' }}
       height="100%"
       gap={{ base: 6, xl: 8 }}
-      textAlign={{ base: 'center', xl: 'left' }}
+      textAlign={{ base: 'center', xl: 'start' }}
     >
       <Heading
         size="5xl"
@@ -22,12 +24,9 @@ const FeaturedWorksSection = () => {
           fontVariantCaps: 'small-caps',
         }}
       >
-        Some of my works.
+        {t('works.heading')}
       </Heading>
-      <Text color="kl.description">
-        Check out some of the works I made at freelancing, company projects and
-        even case studies.
-      </Text>
+      <Text color="kl.description">{t('works.description')}</Text>
 
       <MotionGrid
         columns={1}
@@ -36,15 +35,16 @@ const FeaturedWorksSection = () => {
         marginTop={2}
       >
         {FeaturedWorksList.map((work, index) => (
-          <MotionBox key={work.title} variants={fadeInUpSlower} height="100%">
+          <MotionBox key={work.key} variants={fadeInUpSlower} height="100%">
             <FeaturedCard
               idx={index + 1}
-              title={work.title}
+              title={t(`works.items.${work.key}.title`)}
               src={work.src}
-              description={work.description}
+              description={t(`works.items.${work.key}.description`)}
               ctaUrl={work.ctaUrl}
               objectPosition={work.objectPosition}
               tags={work.tags}
+              ctaLabel={t('works.view_project')}
             />
           </MotionBox>
         ))}

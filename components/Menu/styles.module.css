@@ -3,7 +3,8 @@
 .menu{
   position: fixed;
   top:0;
-  right: 3.5%;
+  /* Logical end edge: right in LTR, left in RTL — so the fixed nav mirrors. */
+  inset-inline-end: 3.5%;
   z-index: 1;
 }
 .mobileMenuContainer{

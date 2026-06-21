@@ -1,9 +1,11 @@
 import { memo } from 'react'
 import { Heading, Text, Stack, SimpleGrid, Box, Icon } from '@chakra-ui/react'
 import { useColorModeValue } from 'components/ui/color-mode'
+import { useTranslation } from 'next-i18next/pages'
 import { Services as ServicesList } from 'config/services'
 
 const ServicesSection = () => {
+  const { t } = useTranslation('common')
   const emphasis = useColorModeValue('teal.500', 'cyan.200')
   const cardBg = useColorModeValue('blackAlpha.50', 'whiteAlpha.100')
   const borderColor = useColorModeValue('blackAlpha.200', 'whiteAlpha.100')
@@ -12,7 +14,7 @@ const ServicesSection = () => {
       width={{ base: '99%', xl: '75%' }}
       height="100%"
       gap={{ base: 6, xl: 8 }}
-      textAlign={{ base: 'center', xl: 'left' }}
+      textAlign={{ base: 'center', xl: 'start' }}
     >
       <Heading
         size="5xl"
@@ -20,21 +22,18 @@ const ServicesSection = () => {
           fontVariantCaps: 'small-caps',
         }}
       >
-        What i do.
+        {t('services.heading')}
       </Heading>
-      <Text color="kl.description">
-        I work as a freelancer with companies and individuals, building and
-        shipping web products. Here is how I can help.
-      </Text>
+      <Text color="kl.description">{t('services.description')}</Text>
 
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         gap={{ base: 4, md: 6 }}
-        textAlign="left"
+        textAlign="start"
       >
         {ServicesList.map((service) => (
           <Box
-            key={service.title}
+            key={service.key}
             bg={cardBg}
             borderWidth="1px"
             borderColor={borderColor}
@@ -48,10 +47,10 @@ const ServicesSection = () => {
               marginBottom={3}
             />
             <Heading as="h3" fontSize="larger" marginBottom={2}>
-              {service.title}
+              {t(`services.items.${service.key}.title`)}
             </Heading>
             <Text color="kl.description" fontSize="smaller">
-              {service.description}
+              {t(`services.items.${service.key}.description`)}
             </Text>
           </Box>
         ))}
