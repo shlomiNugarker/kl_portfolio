@@ -7,4 +7,13 @@ module.exports = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  // Tree-shake the barrel imports of these heavy packages so only the used
+  // modules ship, cutting the initial JS bundle and main-thread bootup time.
+  experimental: {
+    optimizePackageImports: [
+      '@chakra-ui/react',
+      'framer-motion',
+      'react-icons',
+    ],
+  },
 }

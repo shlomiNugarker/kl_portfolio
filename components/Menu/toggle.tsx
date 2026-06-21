@@ -26,6 +26,8 @@ export const MenuToggle = ({
 }) => (
   <button
     onClick={toggle}
+    aria-label="Toggle navigation menu"
+    type="button"
     style={{
       width: '40px',
       height: '40px',

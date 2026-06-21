@@ -1,29 +1,23 @@
-import React, { useEffect } from 'react'
-import { useInView } from 'react-intersection-observer'
-import { motion, useAnimation } from 'framer-motion'
-import { fadeInUpSlower } from 'config/animations'
+import React from 'react'
+import { useInView } from 'hooks/useInView'
+import styles from './FadeWhenVisible.module.css'
+
+// Reveal-on-scroll wrapper. Uses a CSS transition driven by IntersectionObserver
+// instead of framer-motion, so it adds no JS animation cost — this wraps every
+// section, so keeping it framer-free meaningfully cuts main-thread work.
 const FadeInWhenVisible = ({ children }: { children: React.ReactNode }) => {
-  const controls = useAnimation()
-  const [ref, inView] = useInView({
+  const [ref, inView] = useInView<HTMLDivElement>({
     threshold: 0.3,
+    triggerOnce: true,
   })
 
-  useEffect(() => {
-    if (inView) {
-      controls.start('animate')
-    }
-  }, [controls, inView])
-
   return (
-    <motion.div
-      style={{ margin: 0 }}
+    <div
       ref={ref}
-      animate={controls}
-      initial="initial"
-      variants={fadeInUpSlower}
+      className={`${styles.fade} ${inView ? styles.visible : ''}`}
     >
       {children}
-    </motion.div>
+    </div>
   )
 }
 
