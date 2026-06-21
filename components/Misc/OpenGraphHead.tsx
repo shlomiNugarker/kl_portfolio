@@ -15,7 +15,7 @@ const OG_IMAGE = `${SITE_URL}/og-image.png`
 const ogLocale: Record<Locale, string> = {
   en: 'en_US',
   he: 'he_IL',
-  ar: 'ar_AR',
+  ar: 'ar_AE',
 }
 
 const OpenGraphHead = () => {
@@ -55,6 +55,10 @@ const OpenGraphHead = () => {
       <meta property="og:description" content={meta.description} />
       <meta property="og:url" content={canonical} />
       <meta property="og:locale" content={ogLocale[locale]} />
+      {/* Advertise the other locales so crawlers know the page is multilingual. */}
+      {LOCALES.filter((l) => l !== locale).map((l) => (
+        <meta key={l} property="og:locale:alternate" content={ogLocale[l]} />
+      ))}
       <meta property="og:image" content={OG_IMAGE} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

@@ -69,7 +69,7 @@ const GetInTouch = () => {
         </Link>{' '}
         {t('contact.or_email')}{' '}
         <Link
-          href="mailto:shlomin.dev@gmail.com"
+          href="mailto:shlomin1231@gmail.com"
           target="_blank"
           rel="noreferrer"
         >
@@ -94,7 +94,8 @@ const GetInTouch = () => {
         >
           <Text as="span">
             <Icon as={RiGithubFill} h={6} w={6} /> <br />
-            {t('sidebar.name')} <Icon as={RiCopyrightLine} /> 2026
+            {t('sidebar.name')} <Icon as={RiCopyrightLine} />{' '}
+            {new Date().getFullYear()}
           </Text>
         </Link>
       </Box>

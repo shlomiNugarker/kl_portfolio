@@ -20,7 +20,7 @@ export const SocialMedias: SocialMedia[] = [
   },
   {
     label: 'Email',
-    href: 'mailto:shlomin.dev@gmail.com',
+    href: 'mailto:shlomin1231@gmail.com',
     icon: FaEnvelope,
   },
 ]
