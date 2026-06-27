@@ -78,8 +78,10 @@ const Badge = ({ label, isClient }: { label: string; isClient: boolean }) => (
     paddingY={1}
     borderRadius="full"
     backdropFilter="blur(6px)"
-    color={isClient ? 'white' : 'whiteAlpha.900'}
-    bg={isClient ? 'teal.500' : 'blackAlpha.600'}
+    color="white"
+    // teal.700 (not teal.500) so white label text clears WCAG AA (~7:1 vs
+    // ~2.5:1); the personal badge already has white-on-dark contrast.
+    bg={isClient ? 'teal.700' : 'blackAlpha.700'}
     boxShadow="sm"
   >
     {label}

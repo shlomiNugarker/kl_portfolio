@@ -72,8 +72,11 @@ const config = defineConfig({
         'kl.accent': {
           value: { _light: '#000000', _dark: '{colors.cyan.200}' },
         },
+        // Light value is #404040 (not #595959) so small meta text using it —
+        // project number, tech-stack chips — clears WCAG AA (~5.3:1 vs the old
+        // ~3:1) at 12px.
         'kl.accentAlternative': {
-          value: { _light: '#595959', _dark: '#A6A6A6' },
+          value: { _light: '#404040', _dark: '#A6A6A6' },
         },
       },
     },
