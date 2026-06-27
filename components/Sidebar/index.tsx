@@ -105,7 +105,7 @@ const Sidebar = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            {t('sidebar.headline_line1')}
+            {t('sidebar.headline_line1')}{' '}
             <br />
             {t('sidebar.headline_line2')}
           </MotionHeading>
