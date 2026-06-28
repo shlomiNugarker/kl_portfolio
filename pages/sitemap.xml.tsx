@@ -7,6 +7,12 @@ const PAGES = [
   { path: '', changefreq: 'weekly', priority: { default: 1.0, other: 0.9 } },
 ]
 
+// Stable lastmod captured once when the server module loads (i.e. at deploy
+// time), NOT per-request. Emitting "today" on every crawl tells Google the page
+// changes daily when it doesn't, which devalues the signal. Bump by redeploying
+// after a real content change.
+const LASTMOD = new Date().toISOString().split('T')[0]
+
 const buildSitemap = (lastmod: string): string => {
   const urls = PAGES.flatMap((page) =>
     LOCALES.map((locale) => {
@@ -44,8 +50,7 @@ ${urls}
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const lastmod = new Date().toISOString().split('T')[0]
-  const sitemap = buildSitemap(lastmod)
+  const sitemap = buildSitemap(LASTMOD)
 
   res.setHeader('Content-Type', 'application/xml; charset=utf-8')
   res.setHeader(

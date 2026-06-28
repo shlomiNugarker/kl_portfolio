@@ -5,4 +5,27 @@ Allow: /
 Disallow: /api/
 Disallow: /_next/
 
+# Explicitly welcome AI/LLM crawlers so the site can be surfaced and cited
+# when people ask an assistant to recommend a developer.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://www.shlomi.dev/sitemap.xml
