@@ -12,11 +12,11 @@
   },
   "about": {
     "heading": "A bit about me.",
-    "lead_1": "I'm a freelance full-stack developer in Tel Aviv. I build and ship complete web apps",
+    "lead_1": "Freelance full-stack developer in Tel Aviv. I build and ship complete web apps",
     "end_to_end": "end-to-end",
     "end_to_end_tip": "Server, client, and everything in between.",
-    "lead_2": "— one person owning the database, the API, and the screen the user sees.",
-    "body": "I've shipped a bilingual marketing site for a paying client and built two products of my own from scratch, including an AI website builder that generates, previews and deploys live apps. When you hire me you get one person accountable from first idea to launch — fueled by",
+    "lead_2": "— one person owning the whole thing.",
+    "body": "I've shipped a site for a paying client and built two products of my own from scratch, including an AI website builder. Hire me and you get one person accountable from idea to launch — fueled by",
     "coffee": "coffee",
     "coffee_tip": "Lots of it.",
     "see_skills": "See the full list"
