@@ -34,7 +34,9 @@ const LanguageSwitcher = () => {
         <Button
           variant="ghost"
           size="sm"
-          aria-label={t('a11y.language')}
+          // Include the visible locale code so the accessible name matches the
+          // visible label (WCAG label-in-name / voice control).
+          aria-label={`${(locale ?? '').toUpperCase()} — ${t('a11y.language')}`}
           boxShadow="none"
           paddingX={2}
         >

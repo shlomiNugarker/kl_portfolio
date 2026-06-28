@@ -7,7 +7,7 @@ import styles from './styles.module.css'
 // surrounding text color — letting the logo follow the color mode: teal.700 on
 // the light background, cyan.200 in dark. A static <img> can't do that.
 const Logo = () => (
-  <Link href="/" passHref aria-label="Home">
+  <Link href="/" passHref aria-label="SN — Home">
     <Box
       className={styles.logo}
       boxSize={{ base: '30px', lg: '50px' }}

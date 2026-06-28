@@ -117,25 +117,37 @@ const Cover = ({
       {hasGallery && (
         <HStack
           position="absolute"
-          bottom={3}
+          bottom={1}
           insetStart="50%"
           transform="translateX(-50%)"
-          gap={2}
+          gap={0}
           zIndex={1}
         >
           {images.map((img, i) => (
+            // 24x24 transparent hit area (WCAG target size) with a small visible
+            // dot centered inside, so the dot stays compact but is easy to tap.
             <Box
               as="button"
               key={img}
               aria-label={`Show image ${i + 1}`}
               onClick={() => setActive(i)}
-              width={i === active ? '18px' : '8px'}
-              height="8px"
-              borderRadius="full"
-              bg={i === active ? dotActive : dotBg}
-              transition="width 0.2s ease, background 0.2s ease"
+              width="24px"
+              height="24px"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              bg="transparent"
               cursor="pointer"
-            />
+            >
+              <Box
+                as="span"
+                width={i === active ? '18px' : '8px'}
+                height="8px"
+                borderRadius="full"
+                bg={i === active ? dotActive : dotBg}
+                transition="width 0.2s ease, background 0.2s ease"
+              />
+            </Box>
           ))}
         </HStack>
       )}
