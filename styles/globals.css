@@ -85,10 +85,68 @@ body {
   scroll-behavior: smooth;
 }
 
-body {
+/* Base fill on <html> so the fixed ambient layer below (body::before, z-index
+   -1) renders above it instead of being occluded by an opaque body fill. */
+html {
   background: var(--kl-bg);
+}
+
+body {
   color: var(--kl-fg);
   font-family: var(--font-sans);
+}
+
+/* ---------------------------------------------------------------------------
+   Ambient background. A fixed, non-interactive layer behind everything that
+   lifts the flat fill into something richer: two soft accent glows in the
+   site's teal/cyan palette plus a faint vignette. Kept very low-opacity so it
+   reads as depth, not decoration, and never touches text contrast.
+--------------------------------------------------------------------------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Light: cool, airy. A teal bloom top-end, a soft cyan one bottom-start, and
+     a gentle vignette so the corners settle. */
+  background:
+    radial-gradient(
+      60rem 60rem at 85% -10%,
+      rgba(15, 118, 110, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      50rem 50rem at -10% 110%,
+      rgba(151, 223, 252, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      120% 120% at 50% 0%,
+      transparent 60%,
+      rgba(45, 55, 72, 0.05)
+    );
+}
+
+.dark body::before {
+  /* Dark: a deep, expensive near-black with two faint jewel-tone glows. The
+     teal/cyan stays restrained so #121212 still reads as the base. */
+  background:
+    radial-gradient(
+      60rem 60rem at 85% -10%,
+      rgba(45, 212, 191, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      55rem 55rem at -10% 110%,
+      rgba(56, 189, 248, 0.07),
+      transparent 55%
+    ),
+    radial-gradient(
+      130% 130% at 50% 0%,
+      transparent 55%,
+      rgba(0, 0, 0, 0.55)
+    );
 }
 
 a {
