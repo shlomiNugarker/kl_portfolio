@@ -19,9 +19,11 @@ const Menu = () => {
           : undefined
       }
     >
-      {/* Match the site background so the mobile header blends in (kl.bg). */}
+      {/* Match the site background so the mobile header blends in (kl.bg).
+          Roomier horizontal padding on tablet keeps the logo and nav from
+          hugging the far screen edges. */}
       <header
-        className={`m-0 flex w-screen max-w-[100vw] items-center justify-between p-5 lg:p-0 ${
+        className={`m-0 flex w-full items-center justify-between px-5 py-5 md:px-12 lg:px-20 lg:py-0 ${
           isMobile ? 'bg-kl-bg' : 'bg-transparent'
         }`}
       >
