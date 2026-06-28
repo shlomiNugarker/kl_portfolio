@@ -50,7 +50,7 @@ const Sidebar = () => {
             {t('sidebar.cta')}
           </a>
 
-          <div className="flex justify-center xl:justify-start">
+          <div className="-mx-2 flex justify-center xl:justify-start">
             {SocialMedias.map((socMedia) => {
               const isExternal = socMedia.href.startsWith('http')
               const SocialIcon = socMedia.icon
@@ -61,7 +61,10 @@ const Sidebar = () => {
                   rel={isExternal ? 'noreferrer' : undefined}
                   href={socMedia.href}
                   target={isExternal ? '_blank' : undefined}
-                  className="flex w-8 text-kl-description"
+                  // Padding gives the focus ring breathing room and a larger
+                  // touch target; the negative margin on the row keeps the
+                  // icons visually aligned with the text above.
+                  className="flex rounded-md p-2 text-kl-description"
                 >
                   <SocialIcon aria-hidden className="h-6 w-6" />
                 </a>
