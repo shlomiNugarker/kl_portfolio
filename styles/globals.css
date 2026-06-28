@@ -102,6 +102,22 @@ a {
   box-sizing: border-box;
 }
 
+/* ---------------------------------------------------------------------------
+   Keyboard focus. A single, consistent, accent-colored ring on every
+   interactive element when navigating with the keyboard (focus-visible only,
+   so it never shows on mouse click). Uses outline (not box-shadow/ring) so it
+   is direction-agnostic for RTL and not clipped by overflow:hidden parents.
+--------------------------------------------------------------------------- */
+:where(a, button, [role='button'], input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--kl-emphasis);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+/* Never leave an element with its outline removed and no replacement. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Scrollbar */
 body::-webkit-scrollbar {
   width: 0.4em;

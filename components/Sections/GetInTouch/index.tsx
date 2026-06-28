@@ -72,7 +72,7 @@ const GetInTouch = () => {
           href="https://github.com/shlomiNugarker"
           target="_blank"
           rel="noreferrer"
-          className="text-kl-description no-underline outline-none"
+          className="text-kl-description no-underline"
         >
           <span>
             <RiGithubFill aria-hidden className="inline h-6 w-6" /> <br />
