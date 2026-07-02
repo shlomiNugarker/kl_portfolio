@@ -2,8 +2,11 @@ import { useState } from 'react'
 import NextImage from 'next/image'
 import { RiGithubFill } from 'react-icons/ri'
 import styles from './styles.module.css'
+import { trackEvent } from 'lib/analytics'
 
 export type FeaturedCardProps = {
+  // Stable, locale-independent project id (works.ts key) for analytics.
+  workKey: string
   // One or more cover images; a gallery is shown when length > 1.
   images: string[]
   idx: number
@@ -59,17 +62,26 @@ const Cover = ({
   return (
     <div className="relative aspect-[16/8] w-full overflow-hidden bg-kl-surface-strong">
       <Badge label={badgeLabel} isClient={isClient} />
-      <div className="absolute inset-0">
-        <NextImage
-          key={images[active]}
-          src={images[active]}
-          alt={hasGallery ? `${title} — image ${active + 1}` : title}
-          fill
-          loading="lazy"
-          quality={75}
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 760px"
-          style={{ objectFit: 'cover', objectPosition }}
-        />
+      {/* All gallery images stay mounted and stacked; switching cross-fades
+          via opacity instead of remounting (no flash of empty surface). The
+          whole stack zooms subtly while the card is hovered. */}
+      <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+        {images.map((img, i) => (
+          <NextImage
+            key={img}
+            src={img}
+            alt={hasGallery ? `${title} — image ${i + 1}` : title}
+            fill
+            loading="lazy"
+            quality={75}
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 760px"
+            style={{ objectFit: 'cover', objectPosition }}
+            className={`transition-opacity duration-500 motion-reduce:transition-none ${
+              i === active ? 'opacity-100' : 'opacity-0'
+            }`}
+            aria-hidden={i !== active}
+          />
+        ))}
       </div>
 
       {hasGallery && (
@@ -99,6 +111,7 @@ const Cover = ({
 }
 
 const FeaturedCard = ({
+  workKey,
   idx,
   images,
   title,
@@ -156,6 +169,9 @@ const FeaturedCard = ({
             href={ctaUrl}
             rel="noreferrer"
             target="_blank"
+            onClick={() =>
+              trackEvent('project_click', { project: workKey, link: 'live' })
+            }
             className="inline-flex h-8 items-center justify-center rounded-md border border-kl-muted px-3 text-sm font-medium transition-colors hover:border-kl-accent-hover hover:bg-kl-accent-soft md:text-base"
           >
             {ctaLabel}
@@ -165,6 +181,9 @@ const FeaturedCard = ({
               href={repoUrl}
               rel="noreferrer"
               target="_blank"
+              onClick={() =>
+                trackEvent('project_click', { project: workKey, link: 'code' })
+              }
               className="inline-flex h-8 items-center justify-center gap-1.5 rounded-md border border-kl-muted px-3 text-sm font-medium transition-colors hover:border-kl-accent-hover hover:bg-kl-accent-soft md:text-base"
             >
               <RiGithubFill aria-hidden />

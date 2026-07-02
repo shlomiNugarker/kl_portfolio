@@ -2,6 +2,8 @@ import { memo } from 'react'
 import { useTranslation } from 'next-i18next/pages'
 import FeaturedCard from './FeaturedCard'
 import { FeaturedWorksList } from 'config/works'
+import SectionCta from 'components/Misc/SectionCta'
+import Reveal from 'components/Misc/Reveal'
 
 const FeaturedWorksSection = () => {
   const { t } = useTranslation('common')
@@ -19,8 +21,9 @@ const FeaturedWorksSection = () => {
 
       <div className="mt-2 grid grid-cols-1 gap-6 md:gap-8">
         {FeaturedWorksList.map((work, index) => (
-          <div key={work.key} className="h-full">
+          <Reveal key={work.key} className="h-full" delay={index * 100}>
             <FeaturedCard
+              workKey={work.key}
               idx={index + 1}
               title={t(`works.items.${work.key}.title`)}
               images={work.images}
@@ -38,9 +41,11 @@ const FeaturedWorksSection = () => {
               )}
               isClient={work.type === 'client'}
             />
-          </div>
+          </Reveal>
         ))}
       </div>
+
+      <SectionCta label={t('works.cta')} location="works" />
     </div>
   )
 }

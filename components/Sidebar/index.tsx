@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next/pages'
 import { useColorMode } from 'components/ui/color-mode'
 import styles from './styles.module.css'
 import { SocialMedias } from 'config/sidebar'
+import { trackEvent } from 'lib/analytics'
 
 const Sidebar = () => {
   const { t } = useTranslation('common')
@@ -41,9 +42,13 @@ const Sidebar = () => {
             {t('sidebar.description')}
           </p>
 
+          {/* Primary conversion CTA: solid accent fill (kl-on-accent keeps the
+              label AA in both themes), so it reads as THE action in the hero
+              rather than one more outline control. */}
           <a
             href="#contact"
-            className="inline-flex h-12 items-center justify-center border border-current px-6 text-sm font-medium transition-colors hover:bg-kl-hover"
+            onClick={() => trackEvent('cta_click', { location: 'hero' })}
+            className="inline-flex h-12 items-center justify-center rounded-md bg-kl-accent-strong px-6 text-sm font-semibold text-kl-on-accent shadow-sm transition-[background-color,transform] duration-200 hover:bg-kl-accent-hover hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
           >
             {t('sidebar.cta')}
           </a>
@@ -59,6 +64,12 @@ const Sidebar = () => {
                   rel={isExternal ? 'noreferrer' : undefined}
                   href={socMedia.href}
                   target={isExternal ? '_blank' : undefined}
+                  onClick={() =>
+                    trackEvent('social_click', {
+                      network: socMedia.label.toLowerCase(),
+                      location: 'hero',
+                    })
+                  }
                   // Padding gives the focus ring breathing room and a larger
                   // touch target; the negative margin on the row keeps the
                   // icons visually aligned with the text above.

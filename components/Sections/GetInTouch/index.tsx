@@ -3,20 +3,24 @@ import { useTranslation } from 'next-i18next/pages'
 import { RiCopyrightLine, RiGithubFill, RiMailLine } from 'react-icons/ri'
 import { FaWhatsapp } from 'react-icons/fa'
 import { whatsappUrl, PERSON } from 'config/seo'
+import { trackEvent } from 'lib/analytics'
 
 // Inline links inside the body copy: explicit accent color, weight and a
 // persistent underline so they're obviously clickable against muted body text.
 const InlineLink = ({
   href,
+  onClick,
   children,
 }: {
   href: string
+  onClick?: () => void
   children: React.ReactNode
 }) => (
   <a
     href={href}
     target="_blank"
     rel="noreferrer"
+    onClick={onClick}
     className="font-semibold text-kl-emphasis underline underline-offset-[3px] hover:no-underline"
   >
     {children}
@@ -36,11 +40,27 @@ const GetInTouch = () => {
       </h2>
       <p className="text-sm leading-relaxed text-kl-description md:text-base 2xl:text-lg">
         {t('contact.body')}{' '}
-        <InlineLink href={PERSON.linkedin}>
+        <InlineLink
+          href={PERSON.linkedin}
+          onClick={() =>
+            trackEvent('social_click', {
+              network: 'linkedin',
+              location: 'contact',
+            })
+          }
+        >
           {t('contact.linkedin')}
         </InlineLink>{' '}
         {t('contact.or_email')}{' '}
-        <InlineLink href={`mailto:${PERSON.email}`}>
+        <InlineLink
+          href={`mailto:${PERSON.email}`}
+          onClick={() =>
+            trackEvent('contact_click', {
+              method: 'email',
+              location: 'contact_inline',
+            })
+          }
+        >
           {t('contact.email')}
         </InlineLink>
         .
@@ -53,6 +73,12 @@ const GetInTouch = () => {
           href={whatsappUrl()}
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            trackEvent('contact_click', {
+              method: 'whatsapp',
+              location: 'contact',
+            })
+          }
           className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-kl-accent-strong px-6 text-base font-semibold text-kl-emphasis transition-colors hover:border-kl-accent-hover hover:bg-kl-accent-soft"
         >
           <FaWhatsapp aria-hidden />
@@ -60,6 +86,12 @@ const GetInTouch = () => {
         </a>
         <a
           href={`mailto:${PERSON.email}`}
+          onClick={() =>
+            trackEvent('contact_click', {
+              method: 'email',
+              location: 'contact',
+            })
+          }
           className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-kl-muted px-6 text-base font-medium transition-colors hover:border-kl-accent-hover hover:bg-kl-accent-soft"
         >
           <RiMailLine aria-hidden />
@@ -72,6 +104,12 @@ const GetInTouch = () => {
           href={PERSON.github}
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            trackEvent('social_click', {
+              network: 'github',
+              location: 'footer',
+            })
+          }
           className="text-kl-description no-underline"
         >
           <span>
