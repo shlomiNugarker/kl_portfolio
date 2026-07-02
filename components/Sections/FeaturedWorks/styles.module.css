@@ -1,14 +1,6 @@
-
+/* Radius/hover-zoom live in the component's Tailwind classes. */
 .featureCard{
     position: relative;
     margin: auto;
     overflow: hidden;
-    border-radius: 0.80em;
-
 }
-/* .featureCard img{
-    transition: all 0.1s ease-in-out;
-}
-.featureCard:hover img{
-    transform: scale(1.1);
-} */

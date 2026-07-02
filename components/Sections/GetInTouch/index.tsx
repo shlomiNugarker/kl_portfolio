@@ -4,6 +4,7 @@ import { RiCopyrightLine, RiGithubFill, RiMailLine } from 'react-icons/ri'
 import { FaWhatsapp } from 'react-icons/fa'
 import { whatsappUrl, PERSON } from 'config/seo'
 import { trackEvent } from 'lib/analytics'
+import SectionHeading from 'components/Misc/SectionHeading'
 
 // Inline links inside the body copy: explicit accent color, weight and a
 // persistent underline so they're obviously clickable against muted body text.
@@ -31,13 +32,10 @@ const GetInTouch = () => {
   const { t } = useTranslation('common')
   return (
     <footer className="flex h-full mx-auto w-[99%] max-w-2xl flex-col gap-6 text-center xl:mx-0 xl:max-w-none xl:w-3/4 xl:gap-8 xl:text-start">
-      <h2
-        className="text-4xl font-bold xl:text-5xl"
-        style={{ fontVariantCaps: 'small-caps' }}
-      >
+      <SectionHeading num="05" eyebrow={t('nav.contact')}>
         {t('contact.heading')}{' '}
         <span className="text-2xl text-kl-emphasis">(⁀ᗢ⁀)</span>
-      </h2>
+      </SectionHeading>
       <p className="text-sm leading-relaxed text-kl-description md:text-base 2xl:text-lg">
         {t('contact.body')}{' '}
         <InlineLink
@@ -66,8 +64,8 @@ const GetInTouch = () => {
         .
       </p>
 
-      {/* CTAs on the site's teal/cyan accent (tight palette). WhatsApp primary,
-          email secondary; both outline to match the rest of the site. */}
+      {/* WhatsApp is the primary action (solid accent, matching the hero CTA);
+          email stays as the quiet outline secondary. */}
       <div className="flex flex-wrap justify-center gap-3 xl:justify-start">
         <a
           href={whatsappUrl()}
@@ -79,7 +77,7 @@ const GetInTouch = () => {
               location: 'contact',
             })
           }
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-kl-accent-strong px-6 text-base font-semibold text-kl-emphasis transition-colors hover:border-kl-accent-hover hover:bg-kl-accent-soft"
+          className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-kl-accent-strong px-6 text-base font-semibold text-kl-on-accent shadow-sm transition-[background-color,transform] duration-200 hover:bg-kl-accent-hover hover:-translate-y-0.5 motion-reduce:hover:translate-y-0"
         >
           <FaWhatsapp aria-hidden />
           {t('contact.cta_whatsapp')}

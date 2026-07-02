@@ -4,17 +4,15 @@ import FeaturedCard from './FeaturedCard'
 import { FeaturedWorksList } from 'config/works'
 import SectionCta from 'components/Misc/SectionCta'
 import Reveal from 'components/Misc/Reveal'
+import SectionHeading from 'components/Misc/SectionHeading'
 
 const FeaturedWorksSection = () => {
   const { t } = useTranslation('common')
   return (
     <div className="flex h-full mx-auto w-[99%] max-w-2xl flex-col gap-6 text-center xl:mx-0 xl:max-w-none xl:w-3/4 xl:gap-8 xl:text-start">
-      <h2
-        className="text-4xl font-bold xl:text-5xl"
-        style={{ fontVariantCaps: 'small-caps' }}
-      >
+      <SectionHeading num="03" eyebrow={t('nav.works')}>
         {t('works.heading')}
-      </h2>
+      </SectionHeading>
       <p className="text-sm leading-relaxed text-kl-description md:text-base 2xl:text-lg">
         {t('works.description')}
       </p>

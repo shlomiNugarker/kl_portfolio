@@ -23,6 +23,16 @@ const Sidebar = () => {
       </div>
       <div className="mx-auto flex w-full max-w-[60ch] flex-col items-center gap-3 p-0 text-center xl:mx-0 xl:h-screen xl:max-w-none xl:items-start xl:justify-center xl:text-start">
         <div className="flex w-full flex-col items-center gap-3 xl:items-start">
+          {/* Availability badge: the single strongest freelance signal, worn
+              like a status light. The ping is decorative only, so it's
+              disabled under prefers-reduced-motion. */}
+          <span className="inline-flex items-center gap-2 rounded-full border border-kl-border bg-kl-surface px-3 py-1.5 text-xs font-medium text-kl-description">
+            <span aria-hidden className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-kl-emphasis opacity-75 motion-reduce:animate-none" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-kl-emphasis" />
+            </span>
+            {t('sidebar.availability')}
+          </span>
           <p className="font-light text-base text-kl-accent md:text-lg">
             {t('sidebar.greeting')}
           </p>

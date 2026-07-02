@@ -13,6 +13,7 @@ import {
 } from 'react-icons/si'
 import { GiCoffeePot } from 'react-icons/gi'
 import { IoMdOpen } from 'react-icons/io'
+import SectionHeading from 'components/Misc/SectionHeading'
 
 type ISkillSetModal = {
   onOpen(): void
@@ -49,12 +50,9 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
 
   return (
     <section className="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 text-center xl:mx-0 xl:w-[70%] xl:max-w-none xl:items-stretch xl:gap-8 xl:text-start">
-      <h2
-        className="text-4xl font-bold xl:text-5xl"
-        style={{ fontVariantCaps: 'small-caps' }}
-      >
+      <SectionHeading num="01" eyebrow={t('nav.about')}>
         {t('about.heading')}
-      </h2>
+      </SectionHeading>
       <p className="text-sm leading-relaxed text-kl-description md:text-base 2xl:text-lg">
         {t('about.lead_1')}{' '}
         <Tooltip content={t('about.end_to_end_tip')}>

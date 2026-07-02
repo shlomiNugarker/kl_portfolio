@@ -26,7 +26,7 @@ export type FeaturedCardProps = {
 }
 
 const Tag = ({ label }: { label: string }) => (
-  <span className="whitespace-nowrap rounded-full border border-kl-border-strong bg-kl-surface px-2.5 py-1 text-xs font-medium tracking-[0.02em] text-kl-description">
+  <span className="whitespace-nowrap rounded-full border border-kl-border-strong bg-kl-surface px-2.5 py-1 font-mono text-xs text-kl-description">
     {label}
   </span>
 )
@@ -127,7 +127,7 @@ const FeaturedCard = ({
 }: FeaturedCardProps) => {
   return (
     <div
-      className={`${styles.featureCard} group flex h-full flex-col overflow-hidden rounded-[1.25em] border border-kl-border bg-kl-surface transition-colors duration-200 hover:border-kl-accent-hover`}
+      className={`${styles.featureCard} group flex h-full flex-col overflow-hidden rounded-[1.25em] border border-kl-border bg-kl-surface transition-[border-color,box-shadow] duration-300 hover:border-kl-accent-hover hover:shadow-[0_24px_60px_-24px_var(--kl-glow)]`}
     >
       {/* Wide, full-bleed cover (single image or a small gallery). */}
       <Cover
@@ -142,14 +142,18 @@ const FeaturedCard = ({
       <div className="flex flex-1 flex-col gap-4 px-5 py-5 text-start md:px-7 md:py-6">
         <div className="flex flex-col gap-2">
           <div className="flex items-baseline gap-3">
-            <span className="text-sm font-bold tabular-nums text-kl-accent-alt md:text-base">
+            <span className="font-mono text-sm font-bold text-kl-emphasis md:text-base">
               #0{idx}
             </span>
             <h3 className="text-lg font-bold uppercase tracking-wide md:text-xl">
               {title}
             </h3>
           </div>
-          <hr className="border-kl-border" />
+          {/* Fading hairline, matching the section-heading rule. */}
+          <span
+            aria-hidden
+            className="h-px w-full bg-linear-to-r from-kl-border-strong to-transparent rtl:bg-linear-to-l"
+          />
         </div>
 
         <p className="text-sm leading-relaxed text-kl-description md:text-base">
